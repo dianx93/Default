@@ -24,6 +24,7 @@ public class IntroUI {
 		for (int i = 0; i <8 ; i++) {
 			infoBox.getChildren().add(new Label(fromIntroText.nextLine()));
 		}
+		fromIntroText.close();
 		infoBox.getChildren().add(new ImageView(new Image(new FileInputStream("lib\\default.gif"))));
 		root.getChildren().add(infoBox);
 		return scene;

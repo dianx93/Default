@@ -20,13 +20,14 @@ public class IntroUI {
 		Scene scene = new Scene(root, 300, 400);
 		VBox infoBox = new VBox();
 		infoBox.setPadding(new Insets(20));
-		Scanner fromIntroText = new Scanner(new File("lib\\intro.txt"));
+		Scanner fromIntroText = new Scanner(new File("lib\\intro.txt")); //need peaks olema properties failis, mitte txt
 		for (int i = 0; i <9 ; i++) {
 			infoBox.getChildren().add(new Label(fromIntroText.nextLine()));
 		}
 		fromIntroText.close();
 		infoBox.getChildren().add(new ImageView(new Image(new FileInputStream("lib\\default.gif"))));
 		root.getChildren().add(infoBox);
+		//version number
 		return scene;
 	}
 

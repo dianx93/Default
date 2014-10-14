@@ -21,7 +21,7 @@ public class IntroUI {
 		VBox infoBox = new VBox();
 		infoBox.setPadding(new Insets(20));
 		Scanner fromIntroText = new Scanner(new File("lib\\intro.txt"));
-		for (int i = 0; i <8 ; i++) {
+		for (int i = 0; i <9 ; i++) {
 			infoBox.getChildren().add(new Label(fromIntroText.nextLine()));
 		}
 		fromIntroText.close();

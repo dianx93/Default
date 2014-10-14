@@ -25,7 +25,7 @@ public class IntroUI {
 		InputStream input = null;
 	 
 		try {
-			input = new FileInputStream("application.properties");
+			input = new FileInputStream("res\\application.properties");
 			prop.load(input);
 			infoBox.getChildren().add(new Label(prop.getProperty("teamName")));
 			infoBox.getChildren().add(new Label());
@@ -37,7 +37,7 @@ public class IntroUI {
 			infoBox.getChildren().add(new Label(prop.getProperty("TeamMember1")));
 			infoBox.getChildren().add(new Label(prop.getProperty("TeamMember2")));
 			
-			input = new FileInputStream("version.properties");
+			input = new FileInputStream("res\\version.properties");
 			prop.load(input);
 			infoBox.getChildren().add(new Label());
 			infoBox.getChildren().add(new Label("Version: "+prop.getProperty("build.number")));

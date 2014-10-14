@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class IntroUI {
 
 	public static Scene createIntroScene(Stage stage, Group root) throws FileNotFoundException {
-		Scene scene = new Scene(root, 340, 480);
+		Scene scene = new Scene(root, 340, 505);
 		VBox infoBox = new VBox();
 		infoBox.setPadding(new Insets(20));
 		

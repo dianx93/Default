@@ -27,15 +27,15 @@ public class IntroUI {
 		try {
 			input = new FileInputStream("res\\application.properties");
 			prop.load(input);
-			infoBox.getChildren().add(new Label(prop.getProperty("teamName")));
+			infoBox.getChildren().add(new Label(prop.getProperty("Team.Name")));
 			infoBox.getChildren().add(new Label());
 			infoBox.getChildren().add(new Label("Team Leader"));
-			infoBox.getChildren().add(new Label(prop.getProperty("TeamLeader")));
-			infoBox.getChildren().add(new Label(prop.getProperty("TeamLeaderMail")));
+			infoBox.getChildren().add(new Label(prop.getProperty("Team.Leader")));
+			infoBox.getChildren().add(new Label(prop.getProperty("Team.Leader.Mail")));
 			infoBox.getChildren().add(new Label());
 			infoBox.getChildren().add(new Label("Team"));
-			infoBox.getChildren().add(new Label(prop.getProperty("TeamMember1")));
-			infoBox.getChildren().add(new Label(prop.getProperty("TeamMember2")));
+			infoBox.getChildren().add(new Label(prop.getProperty("Team.Member1")));
+			infoBox.getChildren().add(new Label(prop.getProperty("Team.Member2")));
 			
 			input = new FileInputStream("res\\version.properties");
 			prop.load(input);

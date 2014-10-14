@@ -54,7 +54,7 @@ public class IntroUI {
 			}
 		}
 		
-		infoBox.getChildren().add(new ImageView(new Image(new FileInputStream("lib\\default.gif"))));
+		infoBox.getChildren().add(new ImageView(new Image(new FileInputStream("img\\default.gif"))));
 		root.getChildren().add(infoBox);
 		return scene;
 	}

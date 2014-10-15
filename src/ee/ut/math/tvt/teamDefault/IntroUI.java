@@ -25,7 +25,7 @@ public class IntroUI {
 		InputStream input = null;
 	 
 		try {
-			input = new FileInputStream("res\\application.properties");
+			input = new FileInputStream("etc\\res\\application.properties");
 			prop.load(input);
 			infoBox.getChildren().add(new Label(prop.getProperty("Team.Name")));
 			infoBox.getChildren().add(new Label());
@@ -37,12 +37,12 @@ public class IntroUI {
 			infoBox.getChildren().add(new Label(prop.getProperty("Team.Member1")));
 			infoBox.getChildren().add(new Label(prop.getProperty("Team.Member2")));
 			
-			input = new FileInputStream("res\\version.properties");
+			input = new FileInputStream("etc\\res\\version.properties");
 			prop.load(input);
 			infoBox.getChildren().add(new Label());
 			infoBox.getChildren().add(new Label("Version: "+prop.getProperty("build.number")));
 			
-			input = new FileInputStream("res\\application.properties");
+			input = new FileInputStream("etc\\res\\application.properties");
 			infoBox.getChildren().add(new ImageView(new Image(new FileInputStream(prop.getProperty("Team.Logo")))));
 		} catch (IOException ex) {
 			ex.printStackTrace();

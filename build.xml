@@ -6,7 +6,7 @@
 	<property name="classes.dir" value="${build.dir}/classes" />
 	<property name="jar.dir" value="${dist.dir}/jar" />
 	<property name="lib.dir" value="${basedir}/lib" />
-	<property name="res.dir" value="${basedir}/res" />
+	<property name="res.dir" value="${basedir}/etc/res" />
 	<property name="Main-Class" value="ee.ut.math.tvt.teamDefault.Intro" />
 	<property file="${res.dir}/application.properties" />
 

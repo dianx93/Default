@@ -19,7 +19,6 @@ public class Intro extends Application {
 			log.setLevel(Level.INFO);
 			log.addAppender(new FileAppender(new PatternLayout(
 					"%d %-5p [%c{1}] %m%n"), "etc\\Team Default.log"));
-
 			Group root = new Group();
 			Scene scene = IntroUI.createIntroScene(primaryStage, root);
 			primaryStage.setScene(scene);

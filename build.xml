@@ -1,36 +1,60 @@
 <project name="POS" basedir=".">
+	
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="dist.dir" value="${basedir}/build" />
+	<property name="build.dir" value="${dist.dir}/build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="jar.dir" value="${dist.dir}/jar" />
+	<property name="lib.dir" value="${basedir}/lib" />
+	<property name="res.dir" value="${basedir}/res" />
+	<property name="Main-Class" value="ee.ut.math.tvt.teamDefault.Intro" />
+	<property file="${res.dir}/application.properties" />
 
-	<property name="lib.dir" value="lib" />
-
-	<path id="classpath">
-		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+	</path>
+	
+	<path id="run.classpath">
+		<pathelement location="${classes.dir}"/>
+		<fileset dir="${lib.dir}" includes="*.jar" />
+		<dirset dir="${res.dir}" />
+		<pathelement path="${res.dir}"/>
 	</path>
 
 	<target name="clean">
-		<delete dir="build" />
+		<delete dir="${dist.dir}" />
 	</target>
 
 	<target name="build" depends="clean">
-		<mkdir dir="build/classes" />
-		<javac srcdir="src" destdir="build/classes" classpathref="classpath" />
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}"
+			destdir="${classes.dir}"
+			classpathref="build.classpath"
+			includeantruntime="false" />
+		<copy todir="${build.dir}/res">
+			<fileset dir="${res.dir}" />
+		</copy>
 	</target>
 
-	<target name="jar" depends="build">
-		<mkdir dir="build/jar" />
-		<jar destfile="build/jar/POS.jar" basedir="build/classes">
+	<target name="dist" depends="build">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile="${jar.dir}/${Team.Name}.jar">
+			<fileset dir="${classes.dir}"/>
+			<fileset dir="${res.dir}"/>
+			<zipgroupfileset dir="${lib.dir}" includes="*.jar" />
 			<manifest>
-				<attribute name="Main-Class" value="ee.ut.math.tvt.teamDefault.Intro" />
+				<attribute name="Main-Class" value="${Main-Class}" />
 			</manifest>
 		</jar>
 	</target>
 	
-	<target name="run" depends="jar">
-		<java fork="true" classname="ee.ut.math.tvt.teamDefault.Intro">
-			<classpath>
-				<path refid="classpath"/>
-				<path location="build/jar/POS.jar"/>
-			</classpath>
-		</java>
+	<target name="run" depends="build">
+		<java classname="${Main-Class}" classpathref="run.classpath" />
+	</target>
+	
+	<target name="jrun" depends="dist">
+		<java fork="true" jar="${jar.dir}/${Team.Name}.jar" />
 	</target>
 
 

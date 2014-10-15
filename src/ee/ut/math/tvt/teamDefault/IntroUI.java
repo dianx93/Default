@@ -42,6 +42,8 @@ public class IntroUI {
 			infoBox.getChildren().add(new Label());
 			infoBox.getChildren().add(new Label("Version: "+prop.getProperty("build.number")));
 			
+			input = new FileInputStream("res\\application.properties");
+			infoBox.getChildren().add(new ImageView(new Image(new FileInputStream(prop.getProperty("Team.Logo")))));
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -53,8 +55,6 @@ public class IntroUI {
 				}
 			}
 		}
-		
-		infoBox.getChildren().add(new ImageView(new Image(new FileInputStream("img\\default.gif"))));
 		root.getChildren().add(infoBox);
 		return scene;
 	}

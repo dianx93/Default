@@ -39,7 +39,6 @@
 			source="1.7"
 			classpathref="build.classpath"
 			includeantruntime="false" />
-		<!--<copydir src="${res.dir}" dest="${build.dir}/res" />-->
 	</target>
 
 	<target name="dist" depends="build">

@@ -1,16 +1,9 @@
-<project name="POS" default="build" basedir=".">
+<project name="POS" basedir=".">
 
-	<property file="src/res/application.properties" />
-	<property name="Main" value="ee.ut.math.tvt.teamDefault.Intro"/>
-
-	<path id="compile.classpath">
-		<fileset dir="./lib">
-			<include name="*.jar" />
-		</fileset>
-	</path>
+	<property name="lib.dir" value="lib" />
 
 	<path id="classpath">
-		<fileset dir="lib" includes="**/*.jar" />
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
 	</path>
 
 	<target name="clean">
@@ -19,34 +12,26 @@
 
 	<target name="build" depends="clean">
 		<mkdir dir="build/classes" />
-		<javac srcdir="src" destdir="build/classes"
-	    		debug="true"
-	    		debuglevel="lines,vars,source"
-	    		encoding="utf-8"
-	    		compiler="modern"
-	    		target="1.7"
-	    		source="1.7"
-	    		includeantruntime="false">
-			<classpath refid="compile.classpath" />
-		</javac>
-	</target>
-	
-	<target name="run" depends="build">
-		<java classname="ee.ut.math.tvt.teamDefault.Intro" fork="true"/>
+		<javac srcdir="src" destdir="build/classes" classpathref="classpath" />
 	</target>
 
-	<target name="dist" depends="build">
+	<target name="jar" depends="build">
 		<mkdir dir="build/jar" />
-		<jar destfile="build/jar/${teamName}.jar" basedir="build/jar">
-			<zipgroupfileset dir="./lib" includes="**/*.jar" />
-						<manifest>
-							<attribute name="Main-Class" value="${Main}"/>
-						</manifest>
+		<jar destfile="build/jar/POS.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="ee.ut.math.tvt.teamDefault.Intro" />
+			</manifest>
 		</jar>
 	</target>
 	
-	<target name="jrun">
-		<java jar="build/jar/${teamName}.jar" fork="true"/>
+	<target name="run" depends="jar">
+		<java fork="true" classname="ee.ut.math.tvt.teamDefault.Intro">
+			<classpath>
+				<path refid="classpath"/>
+				<path location="build/jar/POS.jar"/>
+			</classpath>
+		</java>
 	</target>
+
 
 </project>

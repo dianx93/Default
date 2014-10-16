@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui.panels;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -10,9 +11,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +37,7 @@ public class PurchaseItemPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     // Text field on the dialogPane
+    private JComboBox<StockItem> productList;
     private JTextField barCodeField;
     private JTextField quantityField;
     private JTextField nameField;
@@ -78,17 +88,22 @@ public class PurchaseItemPanel extends JPanel {
 
         // Create the panel
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 2));
+        panel.setLayout(new GridLayout(6, 2));
         panel.setBorder(BorderFactory.createTitledBorder("Product"));
-
+        
         // Initialize the textfields
+        productList = new JComboBox<StockItem>();
+        for (int i=0;i<model.getWarehouseTableModel().getRowCount();i++){
+        	productList.addItem(getStockItemByBarcode());
+        }
         barCodeField = new JTextField();
-        quantityField = new JTextField("1");
+        quantityField = new JTextField("2");
         nameField = new JTextField();
         priceField = new JTextField();
-
+        
         // Fill the dialog fields if the bar code text field loses focus
-        barCodeField.addFocusListener(new FocusListener() {
+        barCodeField.setEditable(false);
+        /*.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
             }
 
@@ -96,11 +111,15 @@ public class PurchaseItemPanel extends JPanel {
                 fillDialogFields();
             }
         });
-
+*/
         nameField.setEditable(false);
         priceField.setEditable(false);
 
         // == Add components to the panel
+        
+        // - product list
+        panel.add(new JLabel("Product:"));
+        panel.add(productList);
 
         // - bar code
         panel.add(new JLabel("Bar code:"));

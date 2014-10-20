@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -93,25 +95,40 @@ public class PurchaseItemPanel extends JPanel {
         
         // Initialize the textfields
         productList = new JComboBox<StockItem>();
-        for (int i=0;i<model.getWarehouseTableModel().getRowCount();i++){
-        	productList.addItem(getStockItemByBarcode());
+        productList.insertItemAt(null, 0);
+        for (int i=1;i<=model.getWarehouseTableModel().getRowCount();i++){	
+        	try{
+        	productList.addItem(model.getWarehouseTableModel().getItemById(i));
+        	} catch(NoSuchElementException ex){
+        		System.out.println(ex);
+        	}
         }
+        productList.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED){
+					Object product = e.getItem();
+					if(((StockItem)product).getName() ==null){
+						reset();
+					}
+					else {
+						nameField.setText(((StockItem)product).getName());
+						priceField.setText(((StockItem)product).getPrice()+"");
+						barCodeField.setText(((StockItem)product).getId()+"");
+						
+					}
+				}
+				
+			}
+        	
+        });
         barCodeField = new JTextField();
-        quantityField = new JTextField("2");
+        quantityField = new JTextField("1");
         nameField = new JTextField();
         priceField = new JTextField();
         
-        // Fill the dialog fields if the bar code text field loses focus
         barCodeField.setEditable(false);
-        /*.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-            }
-
-            public void focusLost(FocusEvent e) {
-                fillDialogFields();
-            }
-        });
-*/
         nameField.setEditable(false);
         priceField.setEditable(false);
 
@@ -175,6 +192,17 @@ public class PurchaseItemPanel extends JPanel {
             return null;
         }
     }
+    /*
+    private StockItem getStockItemByBarcode(int code) {
+    	try {
+            //int code = Integer.parseInt(barCodeField.getText());
+            return model.getWarehouseTableModel().getItemById(code);
+        } catch (NumberFormatException ex) {
+            return null;
+        } catch (NoSuchElementException ex) {
+            return null;
+        }
+    }/*
 
     /**
      * Add new item to the cart.
@@ -199,6 +227,7 @@ public class PurchaseItemPanel extends JPanel {
      */
     @Override
     public void setEnabled(boolean enabled) {
+    	this.productList.setEnabled(enabled);
         this.addItemButton.setEnabled(enabled);
         this.barCodeField.setEnabled(enabled);
         this.quantityField.setEnabled(enabled);

@@ -217,8 +217,14 @@ public class PurchaseItemPanel extends JPanel {
             } catch (NumberFormatException ex) {
                 quantity = 1;
             }
+            if(stockItem.getQuantity()<quantity){
+            	//errorMessage("Not enough items in stock.");
+            }
+            else{
             model.getCurrentPurchaseTableModel()
                 .addItem(new SoldItem(stockItem, quantity));
+            stockItem.setQuantity(stockItem.getQuantity()-quantity);
+            }
         }
     }
 

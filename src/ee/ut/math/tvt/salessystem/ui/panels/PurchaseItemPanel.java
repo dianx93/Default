@@ -240,9 +240,20 @@ public class PurchaseItemPanel extends JPanel {
     }
 
     /**
+     * Add items back to Stock when purchase has been cancelled.
+     */
+    public void resetStock(){
+    	List<SoldItem> list = model.getCurrentPurchaseTableModel().getTableRows();
+    	for(SoldItem i:list){
+    		i.getStockItem().setQuantity(i.getStockItem().getQuantity()+i.getQuantity());
+    	}
+    }
+    
+    /**
      * Reset dialog fields.
      */
     public void reset() {
+    	productList.setSelectedIndex(0);
         barCodeField.setText("");
         quantityField.setText("1");
         nameField.setText("");

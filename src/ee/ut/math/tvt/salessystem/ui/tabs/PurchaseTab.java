@@ -155,6 +155,7 @@ public class PurchaseTab {
     log.info("Sale cancelled");
     try {
       domainController.cancelCurrentPurchase();
+      resetStock();
       endSale();
       model.getCurrentPurchaseTableModel().clear();
     } catch (VerificationFailedException e1) {
@@ -204,7 +205,9 @@ public class PurchaseTab {
     purchasePane.setEnabled(false);
   }
 
-
+  private void resetStock() {
+	  purchasePane.resetStock();
+  }
 
 
   /* === Next methods just create the layout constraints objects that control the

@@ -1,18 +1,32 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
+
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -168,10 +182,12 @@ public class PurchaseTab {
   protected void submitPurchaseButtonClicked() {
     log.info("Sale complete");
     try {
+    	createPaymentFrame();
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
       );
+      //TODO payment window
       endSale();
       model.getCurrentPurchaseTableModel().clear();
     } catch (VerificationFailedException e1) {
@@ -251,6 +267,44 @@ public class PurchaseTab {
     gc.gridwidth = GridBagConstraints.RELATIVE;
 
     return gc;
+  }
+  
+  // for payment window
+  
+  private void createPaymentFrame(){
+	  JFrame frame = new JFrame("Payment");
+      JLabel sumField = new JLabel();
+      JTextField paymentAmountField;
+      JLabel changeAmountField = new JLabel();
+      
+      //sumField = new JTextField();
+      paymentAmountField = new JTextField("");
+      //changeAmountField = new JTextField("");
+      double sum=0.0;
+      List<SoldItem> list = model.getCurrentPurchaseTableModel().getTableRows();
+      for(SoldItem i:list){
+    	  sum+=i.getSum();
+      }
+      sumField.setText(sum+"");
+      //changeAmountField.setEditable(false);
+      //TODO: window opens in center.
+      //Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+      //setLocation((screen.width - width) / 2, (screen.height - height) / 2);
+      JPanel paymentJPanel = new JPanel();
+      GridLayout paymentGridLayout = new GridLayout(4,2);
+      frame.add(paymentJPanel);
+      paymentJPanel.setLayout(paymentGridLayout);
+      paymentJPanel.setBorder(new EmptyBorder(10,10,10,10));
+      paymentJPanel.add(new JLabel("Sum:"));
+      paymentJPanel.add(sumField);
+      paymentJPanel.add(new JLabel("Payed:"));
+      paymentJPanel.add(paymentAmountField);
+      paymentJPanel.add(new JLabel("Change:"));
+      paymentJPanel.add(changeAmountField);
+      paymentJPanel.add(new JButton("Accept"));
+      paymentJPanel.add(new JButton("Cancel"));
+      frame.pack();
+      frame.setVisible(true);
   }
 
 }

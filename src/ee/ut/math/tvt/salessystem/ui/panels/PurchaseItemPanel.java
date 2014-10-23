@@ -218,7 +218,7 @@ public class PurchaseItemPanel extends JPanel {
                 quantity = 1;
             }
             if(stockItem.getQuantity()<quantity){
-            	//errorMessage("Not enough items in stock.");
+            	//TODO: errorMessage("Not enough items in stock.");
             }
             else{
             model.getCurrentPurchaseTableModel()

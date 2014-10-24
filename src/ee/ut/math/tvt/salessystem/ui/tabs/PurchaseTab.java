@@ -17,7 +17,14 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.EventListener;
 import java.util.List;
+
+import javafx.scene.input.KeyCode;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -273,8 +280,8 @@ public class PurchaseTab {
   private void createPaymentFrame(){
 	  JFrame frame = new JFrame("Payment");
       JLabel sumField = new JLabel();
-      JTextField paymentAmountField;
-      JLabel changeAmountField = new JLabel();
+      final JTextField paymentAmountField;
+      final JLabel changeAmountField = new JLabel();
       
       paymentAmountField = new JTextField("");
       double sum=0.0;
@@ -283,6 +290,7 @@ public class PurchaseTab {
     	  sum+=i.getSum();
       }
       sumField.setText(sum+"");
+      final double finalSum = sum;
       //changeAmountField.setEditable(false);
       Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
       frame.setLocation((screen.width - 200) / 2, (screen.height - 200) / 2);
@@ -295,14 +303,40 @@ public class PurchaseTab {
       paymentJPanel.add(sumField);
       paymentJPanel.add(new JLabel("Payed:"));
       paymentJPanel.add(paymentAmountField);
-      //TODO: change amount changes
       paymentJPanel.add(new JLabel("Change:"));
       paymentJPanel.add(changeAmountField);
+
       //TODO: buttons to work
       paymentJPanel.add(new JButton("Accept"));
       paymentJPanel.add(new JButton("Cancel"));
       frame.pack();
       frame.setVisible(true);
+      
+      // fills ChangeAmountField after ENTER is pressed
+      paymentAmountField.addKeyListener(new KeyAdapter()
+      {
+          public void keyPressed(KeyEvent ke)
+          {
+        	  if(ke.getKeyCode()==KeyEvent.VK_ENTER){
+        		  double payed;
+            	  try
+            	  {
+            	    payed = Double.parseDouble(paymentAmountField.getText());
+            	    if(payed>=finalSum){
+            	    	changeAmountField.setText((double)(Math.round((payed-finalSum)*100))/100+"");
+            	    	
+            	    }
+            	    else{changeAmountField.setText("");}
+            	  }
+            	  catch(NumberFormatException ex){
+            		  changeAmountField.setText("");
+            		  
+            	  }
+        	  }
+          }
+      });
+      
+
   }
 
 }

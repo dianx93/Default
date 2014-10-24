@@ -187,7 +187,6 @@ public class PurchaseTab {
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
       );
-      //TODO payment window
       endSale();
       model.getCurrentPurchaseTableModel().clear();
     } catch (VerificationFailedException e1) {
@@ -277,9 +276,7 @@ public class PurchaseTab {
       JTextField paymentAmountField;
       JLabel changeAmountField = new JLabel();
       
-      //sumField = new JTextField();
       paymentAmountField = new JTextField("");
-      //changeAmountField = new JTextField("");
       double sum=0.0;
       List<SoldItem> list = model.getCurrentPurchaseTableModel().getTableRows();
       for(SoldItem i:list){
@@ -299,8 +296,10 @@ public class PurchaseTab {
       paymentJPanel.add(sumField);
       paymentJPanel.add(new JLabel("Payed:"));
       paymentJPanel.add(paymentAmountField);
+      //TODO: change amount changes
       paymentJPanel.add(new JLabel("Change:"));
       paymentJPanel.add(changeAmountField);
+      //TODO: buttons to work
       paymentJPanel.add(new JButton("Accept"));
       paymentJPanel.add(new JButton("Cancel"));
       frame.pack();

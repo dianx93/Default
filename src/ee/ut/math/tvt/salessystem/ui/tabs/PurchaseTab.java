@@ -55,6 +55,8 @@ public class PurchaseTab {
   private PurchaseItemPanel purchasePane;
 
   private SalesSystemModel model;
+  
+  private JFrame frame = new JFrame("Payment");
 
 
   public PurchaseTab(SalesDomainController controller,
@@ -152,7 +154,40 @@ public class PurchaseTab {
 
 
 
+  //payment window Cancel and Accept buttons
+  
+  private JButton createCancelPaymentButton() {
+	    JButton b = new JButton("Cancel");
+	    b.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent e) {
+	        cancelPaymentButtonClicked();
+	      }
 
+		private void cancelPaymentButtonClicked() {
+			frame.dispose();
+		}
+	    });
+	    b.setEnabled(false);
+
+	    return b;
+} 
+
+  private JButton createPaymentAcceptButton() {
+	    JButton b = new JButton("Accept");
+	    b.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent e) {
+	        acceptPaymentButtonClicked();
+	      }
+
+		private void acceptPaymentButtonClicked() {
+			// TODO Auto-generated method stub
+			
+		}
+	    });
+	    b.setEnabled(false);
+
+	    return b;
+	  }
 
   /* === Event handlers for the menu buttons
    *     (get executed when the buttons are clicked)
@@ -278,7 +313,6 @@ public class PurchaseTab {
   // for payment window
   
   private void createPaymentFrame(){
-	  JFrame frame = new JFrame("Payment");
       JLabel sumField = new JLabel();
       final JTextField paymentAmountField;
       final JLabel changeAmountField = new JLabel();
@@ -307,8 +341,12 @@ public class PurchaseTab {
       paymentJPanel.add(changeAmountField);
 
       //TODO: buttons to work
-      paymentJPanel.add(new JButton("Accept"));
-      paymentJPanel.add(new JButton("Cancel"));
+      JButton paymentCancelButton = createCancelPaymentButton();
+      JButton paymentAcceptButton = createPaymentAcceptButton();
+      paymentJPanel.add(paymentAcceptButton);
+      paymentJPanel.add(paymentCancelButton);
+      paymentCancelButton.setEnabled(true);
+      paymentAmountField.setText("");
       frame.pack();
       frame.setVisible(true);
       
@@ -318,7 +356,7 @@ public class PurchaseTab {
           public void keyPressed(KeyEvent ke)
           {
         	  if(ke.getKeyCode()==KeyEvent.VK_ENTER){
-        		  double payed;
+        		  double payed=0;
             	  try
             	  {
             	    payed = Double.parseDouble(paymentAmountField.getText());
@@ -336,7 +374,9 @@ public class PurchaseTab {
           }
       });
       
+      
 
   }
+
 
 }

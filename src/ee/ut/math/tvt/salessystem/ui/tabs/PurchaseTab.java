@@ -56,7 +56,13 @@ public class PurchaseTab {
 
   private SalesSystemModel model;
   
-  private JFrame frame = new JFrame("Payment");
+  private JFrame frame;
+  
+  private JLabel sumField = new JLabel();
+  
+  private JTextField paymentAmountField = new JTextField();
+  
+  private JLabel changeAmountField = new JLabel();
 
 
   public PurchaseTab(SalesDomainController controller,
@@ -224,7 +230,7 @@ public class PurchaseTab {
   protected void submitPurchaseButtonClicked() {
     log.info("Sale complete");
     try {
-    	createPaymentFrame();
+    	frame = createPaymentFrame();
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
@@ -266,7 +272,7 @@ public class PurchaseTab {
 	  purchasePane.resetStock();
   }
 
-
+  
   /* === Next methods just create the layout constraints objects that control the
    *     the layout of different elements in the purchase tab. These definitions are
    *     brought out here to separate contents from layout, and keep the methods
@@ -310,14 +316,13 @@ public class PurchaseTab {
     return gc;
   }
   
-  // for payment window
+  // creates and returns payment window
   
-  private void createPaymentFrame(){
-      JLabel sumField = new JLabel();
-      final JTextField paymentAmountField;
-      final JLabel changeAmountField = new JLabel();
-      
+  private JFrame createPaymentFrame(){
+	  JFrame frame = new JFrame("Payment");
+      sumField = new JLabel();
       paymentAmountField = new JTextField("");
+      changeAmountField = new JLabel();
       double sum=0.0;
       List<SoldItem> list = model.getCurrentPurchaseTableModel().getTableRows();
       for(SoldItem i:list){
@@ -325,7 +330,6 @@ public class PurchaseTab {
       }
       sumField.setText(sum+"");
       final double finalSum = sum;
-      //changeAmountField.setEditable(false);
       Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
       frame.setLocation((screen.width - 200) / 2, (screen.height - 200) / 2);
       JPanel paymentJPanel = new JPanel();
@@ -340,7 +344,7 @@ public class PurchaseTab {
       paymentJPanel.add(new JLabel("Change:"));
       paymentJPanel.add(changeAmountField);
 
-      //TODO: buttons to work
+      //TODO: accept button to work
       JButton paymentCancelButton = createCancelPaymentButton();
       JButton paymentAcceptButton = createPaymentAcceptButton();
       paymentJPanel.add(paymentAcceptButton);
@@ -374,7 +378,7 @@ public class PurchaseTab {
           }
       });
       
-      
+      return frame;
 
   }
 

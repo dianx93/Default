@@ -186,8 +186,24 @@ public class PurchaseTab {
 	      }
 
 		private void acceptPaymentButtonClicked() {
-			// TODO Auto-generated method stub
-			
+			double payed; 
+			try {
+        	    payed = Double.parseDouble(paymentAmountField.getText());
+        	    if(payed>=Double.parseDouble(sumField.getText())){
+        	    	try {
+        	    		frame.dispose();
+        				log.info("Sale accepted");
+        				domainController.submitCurrentPurchase(
+        		              model.getCurrentPurchaseTableModel().getTableRows()
+        		          );
+        				endSale();
+        				model.getCurrentPurchaseTableModel().clear();
+        		    } catch (VerificationFailedException e1) {
+        		      log.error(e1.getMessage());
+        		    }
+        	    }
+			}
+			catch(NumberFormatException ex){}
 		}
 	    });
 	    b.setEnabled(false);
@@ -228,18 +244,12 @@ public class PurchaseTab {
 
   /** Event handler for the <code>submit purchase</code> event. */
   protected void submitPurchaseButtonClicked() {
-    log.info("Sale complete");
-    try {
-    	frame = createPaymentFrame();
+    log.info("Sale submitted");
+    //try {
+
+        frame = createPaymentFrame();
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
-      domainController.submitCurrentPurchase(
-          model.getCurrentPurchaseTableModel().getTableRows()
-      );
-      endSale();
-      model.getCurrentPurchaseTableModel().clear();
-    } catch (VerificationFailedException e1) {
-      log.error(e1.getMessage());
-    }
+      
   }
 
 
@@ -346,7 +356,7 @@ public class PurchaseTab {
 
       //TODO: accept button to work
       JButton paymentCancelButton = createCancelPaymentButton();
-      JButton paymentAcceptButton = createPaymentAcceptButton();
+      final JButton paymentAcceptButton = createPaymentAcceptButton();
       paymentJPanel.add(paymentAcceptButton);
       paymentJPanel.add(paymentCancelButton);
       paymentCancelButton.setEnabled(true);
@@ -366,7 +376,7 @@ public class PurchaseTab {
             	    payed = Double.parseDouble(paymentAmountField.getText());
             	    if(payed>=finalSum){
             	    	changeAmountField.setText((double)(Math.round((payed-finalSum)*100))/100+"");
-            	    	
+            	    	paymentAcceptButton.setEnabled(true);
             	    }
             	    else{changeAmountField.setText("");}
             	  }

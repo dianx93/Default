@@ -284,9 +284,8 @@ public class PurchaseTab {
       }
       sumField.setText(sum+"");
       //changeAmountField.setEditable(false);
-      //TODO: window opens in center.
-      //Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-      //setLocation((screen.width - width) / 2, (screen.height - height) / 2);
+      Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+      frame.setLocation((screen.width - 200) / 2, (screen.height - 200) / 2);
       JPanel paymentJPanel = new JPanel();
       GridLayout paymentGridLayout = new GridLayout(4,2);
       frame.add(paymentJPanel);

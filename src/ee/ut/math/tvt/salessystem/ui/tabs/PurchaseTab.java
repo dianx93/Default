@@ -354,7 +354,6 @@ public class PurchaseTab {
       paymentJPanel.add(new JLabel("Change:"));
       paymentJPanel.add(changeAmountField);
 
-      //TODO: accept button to work
       JButton paymentCancelButton = createCancelPaymentButton();
       final JButton paymentAcceptButton = createPaymentAcceptButton();
       paymentJPanel.add(paymentAcceptButton);

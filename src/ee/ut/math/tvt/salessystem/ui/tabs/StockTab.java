@@ -152,7 +152,7 @@ private JButton createAddItemButton() {
     return b;
 } 
 
-// table of the wareshouse stock
+// table of the warehouse stock
   private Component drawStockMainPane() {
     JPanel panel = new JPanel();
 

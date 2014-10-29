@@ -21,6 +21,7 @@ public class HistoryTab {
     
     // TODO - implement!
 	private SalesSystemModel model;
+	private static HistoryTableModel Hmodel = new HistoryTableModel();
 	
 	public HistoryTab(SalesSystemModel model) {
 	    this.model = model;
@@ -33,7 +34,7 @@ public class HistoryTab {
         JPanel panel = new JPanel();
         //This line breaks the code:
         //JTable table = new JTable(model.getHistoryTableModel());
-        JTable table = new JTable(new HistoryTableModel());
+        JTable table = new JTable(Hmodel);
         //panel.add(table);
         JTableHeader header = table.getTableHeader();
         header.setReorderingAllowed(false);
@@ -54,5 +55,9 @@ public class HistoryTab {
         // TODO - Sales history tabel
         return panel;
     }
+
+	public static HistoryTableModel getHmodel() {
+		return Hmodel;
+	}
 }
 

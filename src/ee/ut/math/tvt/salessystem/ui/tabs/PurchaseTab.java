@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.salessystem.domain.data.Order;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
@@ -197,6 +198,8 @@ public class PurchaseTab {
         		              model.getCurrentPurchaseTableModel().getTableRows()
         		          );
         				//TODO: add to history
+        				Order order = new Order(Double.parseDouble(sumField.getText()));
+        				HistoryTab.getHmodel().addItem(order);
         				endSale();
         				model.getCurrentPurchaseTableModel().clear();
         		    } catch (VerificationFailedException e1) {

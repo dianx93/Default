@@ -157,7 +157,6 @@ private JButton createAddItemButton() {
 		double itemPrice;
 		int itemQuantity;
 		long itemBarcode;
-		System.out.println(!barcodeField.getText().equals(""));
 		if(!barcodeField.getText().equals("") || !nameField.getText().equals("")){
 			try {
 				itemPrice = Double.parseDouble(priceField.getText());

@@ -109,10 +109,10 @@ private void openAddItemWindow() {
     addItemJPanel.setLayout(addItemGridLayout);
     addItemJPanel.setBorder(new EmptyBorder(10,10,10,10));
     addItemJPanel.add(new JLabel("Barcode:   ", SwingConstants.RIGHT));
-    barcodeField = new JTextField(20);
+    barcodeField = new JTextField("");
     addItemJPanel.add(barcodeField);
     addItemJPanel.add(new JLabel("Name:  ", SwingConstants.RIGHT));
-    nameField = new JTextField(20);
+    nameField = new JTextField("");
     addItemJPanel.add(nameField);
     addItemJPanel.add(new JLabel("Price:  ", SwingConstants.RIGHT));
     priceField = new JTextField(20);
@@ -136,9 +136,10 @@ private JButton createCancelAddItemButton() {
         cancelAddItemButtonClicked();
       }
 
-	private void cancelAddItemButtonClicked() {
-		frame.dispose();
-	}
+      private void cancelAddItemButtonClicked() {
+    	  frame.dispose();
+      }
+	
     });
     return b;
 }
@@ -147,7 +148,7 @@ private JButton createAddItemButton() {
     JButton b = new JButton("Add");
     b.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        addItemButtonClicked();
+    	  addItemButtonClicked();
       }
       
       //adds item that has been given in fields
@@ -156,23 +157,26 @@ private JButton createAddItemButton() {
 		double itemPrice;
 		int itemQuantity;
 		long itemBarcode;
-		try {
-			itemPrice = Double.parseDouble(priceField.getText());
-		} catch (NumberFormatException ex) {
-            itemPrice = 0.0;
-        }
-		try {
-			itemQuantity = Integer.parseInt(quantityField.getText());
-		} catch (NumberFormatException ex) {
-			itemQuantity = 1;
-		}
-		try {
-			itemBarcode = Long.parseLong(barcodeField.getText());
-		} catch (NumberFormatException ex) {
-			itemBarcode = model.getWarehouseTableModel().getRowCount();
-		}
-		StockItem addedItem = new StockItem(itemBarcode, itemName, "", itemPrice, itemQuantity);
-		model.getWarehouseTableModel().addItem(addedItem);
+		System.out.println(!barcodeField.getText().equals(""));
+		if(!barcodeField.getText().equals("") || !nameField.getText().equals("")){
+			try {
+				itemPrice = Double.parseDouble(priceField.getText());
+			} catch (NumberFormatException ex) {
+	            itemPrice = 0.0;
+	        }
+			try {
+				itemQuantity = Integer.parseInt(quantityField.getText());
+			} catch (NumberFormatException ex) {
+				itemQuantity = 1;
+			}
+			try {
+				itemBarcode = Long.parseLong(barcodeField.getText());
+			} catch (NumberFormatException ex) {
+				itemBarcode = model.getWarehouseTableModel().getRowCount()+1;
+			}
+			StockItem addedItem = new StockItem(itemBarcode, itemName, "", itemPrice, itemQuantity);
+			model.getWarehouseTableModel().addItem(addedItem);
+  		}
 		frame.dispose();
 	}
     });

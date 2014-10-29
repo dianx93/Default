@@ -102,6 +102,10 @@
 			<arg value="push" />
 			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
 		</exec>
+		<exec executable="git" dir="">
+					<arg value="push" />
+					<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
+				</exec>
 	</target>
 	
 	<target name="git_tag">
@@ -115,7 +119,7 @@
 		</exec>
 		<input message="Username:" addproperty="commit.username" defaultvalue="" />
 		<input message="Password:" addproperty="commit.password" defaultvalue="" />
-		<exec executable="git">
+		<exec executable="git" dir="">
 			<arg value="push" />
 			<arg value="--tags" />
 			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />

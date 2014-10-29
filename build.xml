@@ -1,5 +1,5 @@
 <project name="POS" basedir="." default="git_push">
-	
+
 	<property name="src.dir" value="${basedir}/src" />
 	<property name="dist.dir" value="${basedir}/build" />
 	<property name="build.dir" value="${dist.dir}/build" />
@@ -10,17 +10,17 @@
 	<property name="Main-Class" value="ee.ut.math.tvt.teamDefault.Intro" />
 	<property file="${res.dir}/application.properties" />
 
-	
+
 	<path id="build.classpath">
 		<fileset dir="${lib.dir}" includes="*.jar" />
 	</path>
 
 	<!--Inspired from lab3-demo-->
 	<path id="run.classpath">
-		<pathelement location="${classes.dir}"/>
+		<pathelement location="${classes.dir}" />
 		<fileset dir="${lib.dir}" includes="*.jar" />
 		<dirset dir="${res.dir}" />
-		<pathelement path="${res.dir}"/>
+		<pathelement path="${res.dir}" />
 	</path>
 
 	<target name="clean">
@@ -29,16 +29,7 @@
 
 	<target name="build" depends="clean">
 		<mkdir dir="${classes.dir}" />
-		<javac srcdir="${src.dir}"
-			destdir="${classes.dir}"
-			debug="true"
-			debuglevel="lines,vars,source"
-			encoding="utf-8"
-			compiler="modern"
-			target="1.7"
-			source="1.7"
-			classpathref="build.classpath"
-			includeantruntime="false" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="true" debuglevel="lines,vars,source" encoding="utf-8" compiler="modern" target="1.7" source="1.7" classpathref="build.classpath" includeantruntime="false" />
 	</target>
 
 	<target name="dist" depends="build">
@@ -53,63 +44,63 @@
 		</jar>
 		<antcall target="revision" />
 	</target>
-	
+
 	<target name="revision">
 		<propertyfile file="${res.dir}/version.properties">
 			<entry key="build.revision.number" value="1" type="int" operation="+" />
 		</propertyfile>
 		<property file="${res.dir}/version.properties" />
 		<propertyfile file="${res.dir}/version.properties">
-			<entry key="build.number" 
-				value="${build.major.number}.${build.minor.number}.${build.revision.number}" />
+			<entry key="build.number" value="${build.major.number}.${build.minor.number}.${build.revision.number}" />
 		</propertyfile>
 	</target>
-	
+
 	<target name="run" depends="build">
 		<java classname="${Main-Class}" classpathref="run.classpath" fork="yes" />
 	</target>
-	
+
 	<target name="jrun">
 		<java jar="${jar.dir}/${Team.Name}.jar" fork="true">
-			 <jvmarg value="-Xdebug" />
-			 <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044" />
+			<jvmarg value="-Xdebug" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044" />
 		</java>
 	</target>
-	
+
 	<target name="runc" depends="build" description="Run the application (console)">
 		<java classname="${Main-Class}" classpathref="test.classpath" fork="yes">
 			<arg value="console" />
 		</java>
 	</target>
-	
-	<macrodef name = "git">
-	    <attribute name = "command" />
-	    <attribute name = "dir" default = "" />
-	    <element name = "args" optional = "true" />
-	    <sequential>
-	        <echo message = "git @{command}" />
-	        <exec executable = "git" dir = "@{dir}">
-	            <arg value = "@{command}" />
-	            <args/>
-	        </exec>
-	    </sequential>
+
+	<macrodef name="git">
+		<attribute name="command" />
+		<attribute name="dir" default="" />
+		<element name="args" optional="true" />
+		<sequential>
+			<echo message="git @{command}" />
+			<exec executable="git" dir="@{dir}">
+				<arg value="@{command}" />
+				<args />
+			</exec>
+		</sequential>
 	</macrodef>
-	
+
 	<target name="git_push">
-		<input
-			message="Commit description:"
-			addproperty="commit.description"
-			defaultvalue=""
-		/>
-		<exec executable="git" dir = "">
-			<arg value = "add"/>
-			<arg value = "-A" />
+		<input message="Commit description:" addproperty="commit.description" defaultvalue="" />
+		<exec executable="git" dir="">
+			<arg value="add" />
+			<arg value="-A" />
 		</exec>
-		<exec executable="git" dir = "">
-					<arg value = "commit"/>
-					<arg value = "-m" />
-					<arg value="${commit.description}"/>
-				</exec>
+		<exec executable="git" dir="">
+			<arg value="commit" />
+			<arg value="-m" />
+			<arg value="${commit.description}" />
+		</exec>
+		<exec executable="git" dir="">
+			<arg value="push" />
+			<input message="Username:" addproperty="commit.username" defaultvalue="" />
+			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
+		</exec>
 	</target>
 
 

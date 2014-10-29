@@ -170,8 +170,6 @@ private JButton createAddItemButton() {
 		}
 		StockItem addedItem = new StockItem(itemBarcode, itemName, "", itemPrice, itemQuantity);
 		model.getWarehouseTableModel().addItem(addedItem);
-		//TODO: implement on log
-		//log.debug("item added:", addedItem.toString());
 		frame.dispose();
 	}
     });

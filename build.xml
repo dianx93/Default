@@ -96,16 +96,10 @@
 			<arg value="-m" />
 			<arg value="${commit.description}" />
 		</exec>
-		<input message="Username:" addproperty="commit.username" defaultvalue="" />
-		<input message="Password:" addproperty="commit.password" defaultvalue="" />
 		<exec executable="git" dir="">
 			<arg value="push" />
-			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
+			<arg value="ssh://github.com/OttMatiisen/Default.git" />
 		</exec>
-		<exec executable="git" dir="">
-					<arg value="push" />
-					<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
-				</exec>
 	</target>
 	
 	<target name="git_tag">

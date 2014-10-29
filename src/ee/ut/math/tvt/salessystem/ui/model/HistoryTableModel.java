@@ -54,5 +54,9 @@ public class HistoryTableModel extends SalesSystemTableModel<Order> {
 
 		return buffer.toString();
 	}
+	
+	public Order getOrder(int rownr){
+		return rows.get(rownr);
+	}
 
 }

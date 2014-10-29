@@ -198,7 +198,7 @@ public class PurchaseTab {
         		              model.getCurrentPurchaseTableModel().getTableRows()
         		          );
         				//TODO: add to history
-        				Order order = new Order(Double.parseDouble(sumField.getText()));
+        				Order order = new Order(Double.parseDouble(sumField.getText()), model.getCurrentPurchaseTableModel().toString());
         				HistoryTab.getHmodel().addItem(order);
         				endSale();
         				model.getCurrentPurchaseTableModel().clear();

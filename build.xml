@@ -85,7 +85,7 @@
 		</sequential>
 	</macrodef>
 
-	<target name="git_push">
+	<target name="git_commit">
 		<input message="Commit description:" addproperty="commit.description" defaultvalue="" />
 		<exec executable="git" dir="">
 			<arg value="add" />

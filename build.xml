@@ -1,4 +1,4 @@
-<project name="POS" basedir=".">
+<project name="POS" basedir="." default="git_push">
 	
 	<property name="src.dir" value="${basedir}/src" />
 	<property name="dist.dir" value="${basedir}/build" />
@@ -43,7 +43,9 @@
 
 	<target name="dist" depends="build">
 		<mkdir dir="${jar.dir}" />
-		<jar destfile="${jar.dir}/${Team.Name}.jar" basedir="${classes.dir}">
+		<jar destfile="${jar.dir}/${Team.Name}.jar">
+			<fileset dir="${classes.dir}" />
+			<fileset dir="${res.dir}" />
 			<zipgroupfileset dir="${lib.dir}" includes="*.jar" />
 			<manifest>
 				<attribute name="Main-Class" value="${Main-Class}" />
@@ -64,11 +66,50 @@
 	</target>
 	
 	<target name="run" depends="build">
-		<java classname="${Main-Class}" classpathref="run.classpath" />
+		<java classname="${Main-Class}" classpathref="run.classpath" fork="yes" />
 	</target>
 	
 	<target name="jrun">
-		<java fork="true" jar="${jar.dir}/${Team.Name}.jar" />
+		<java jar="${jar.dir}/${Team.Name}.jar" fork="true">
+			 <jvmarg value="-Xdebug" />
+			 <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044" />
+		</java>
+	</target>
+	
+	<target name="runc" depends="build" description="Run the application (console)">
+		<java classname="${Main-Class}" classpathref="test.classpath" fork="yes">
+			<arg value="console" />
+		</java>
+	</target>
+	
+	<macrodef name = "git">
+	    <attribute name = "command" />
+	    <attribute name = "dir" default = "" />
+	    <element name = "args" optional = "true" />
+	    <sequential>
+	        <echo message = "git @{command}" />
+	        <exec executable = "git" dir = "@{dir}">
+	            <arg value = "@{command}" />
+	            <args/>
+	        </exec>
+	    </sequential>
+	</macrodef>
+	
+	<target name="git_push">
+		<input
+			message="Commit description:"
+			addproperty="commit.description"
+			defaultvalue=""
+		/>
+		<exec executable="git" dir = "">
+			<arg value = "add"/>
+			<arg value = "-A" />
+		</exec>
+		<exec executable="git" dir = "">
+					<arg value = "commit"/>
+					<arg value = "-m" />
+					<arg value="${commit.description}"/>
+				</exec>
 	</target>
 
 

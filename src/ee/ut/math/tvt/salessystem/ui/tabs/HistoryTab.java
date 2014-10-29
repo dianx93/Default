@@ -53,7 +53,9 @@ public class HistoryTab {
         
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
+            	if(event.getValueIsAdjusting()){
             	infoFrame = openOrderInfo(Hmodel.getOrder(table.getSelectedRow()).getProducts());
+            	}
             }
 
 			private JFrame openOrderInfo(String products) {
@@ -66,6 +68,7 @@ public class HistoryTab {
 	            infoJPanel.setLayout(infoLayout);
 	            JTextPane textPane = new JTextPane();
 	            textPane.setText(products);
+	            textPane.setEditable(false);
 	            infoJPanel.add(textPane);
 	            infoLayout.setHgap(5);
 	            JButton closeButton = new JButton("   Close   ");

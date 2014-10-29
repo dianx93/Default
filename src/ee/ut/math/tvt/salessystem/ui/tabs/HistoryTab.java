@@ -79,6 +79,7 @@ public class HistoryTab {
 
 	                private void closeButtonClicked() {
 	              	  infoFrame.dispose();
+	              	  table.clearSelection();
 	                }
 	          	
 	              });

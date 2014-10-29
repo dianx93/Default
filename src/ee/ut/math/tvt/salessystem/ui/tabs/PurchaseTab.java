@@ -197,7 +197,6 @@ public class PurchaseTab {
         				domainController.submitCurrentPurchase(
         		              model.getCurrentPurchaseTableModel().getTableRows()
         		          );
-        				//TODO: add to history
         				Order order = new Order(Double.parseDouble(sumField.getText()), model.getCurrentPurchaseTableModel().toString());
         				HistoryTab.getHmodel().addItem(order);
         				endSale();

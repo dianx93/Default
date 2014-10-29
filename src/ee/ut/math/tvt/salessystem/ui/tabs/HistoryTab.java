@@ -1,13 +1,22 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
@@ -24,6 +33,7 @@ public class HistoryTab {
     // TODO - implement!
 	private SalesSystemModel model;
 	private static HistoryTableModel Hmodel = new HistoryTableModel();
+	private JFrame infoFrame;
 	
 	public HistoryTab(SalesSystemModel model) {
 	    this.model = model;
@@ -43,13 +53,36 @@ public class HistoryTab {
         
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
-            	openPurchaseInfo(Hmodel.getOrder(table.getSelectedRow()).getProducts());
+            	infoFrame = openOrderInfo(Hmodel.getOrder(table.getSelectedRow()).getProducts());
             }
 
-			private void openPurchaseInfo(String info) {
-				
-				// TODO Auto-generated method stub
-				
+			private JFrame openOrderInfo(String products) {
+				final JFrame infoFrame = new JFrame("Order info");
+	        	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+	            infoFrame.setLocation((screen.width - 450) / 2, (screen.height - 200) / 2);
+	            JPanel infoJPanel = new JPanel();
+	            infoFrame.add(infoJPanel);
+	            FlowLayout infoLayout = new FlowLayout();
+	            infoJPanel.setLayout(infoLayout);
+	            JTextPane textPane = new JTextPane();
+	            textPane.setText(products);
+	            infoJPanel.add(textPane);
+	            infoLayout.setHgap(5);
+	            JButton closeButton = new JButton("   Close   ");
+	            closeButton.addActionListener(new ActionListener() {
+	                public void actionPerformed(ActionEvent e) {
+	                  closeButtonClicked();
+	                }
+
+	                private void closeButtonClicked() {
+	              	  infoFrame.dispose();
+	                }
+	          	
+	              });
+	            infoJPanel.add(closeButton);
+	            infoFrame.pack();
+	            infoFrame.setVisible(true);
+	            return infoFrame;
 			}
         });
 

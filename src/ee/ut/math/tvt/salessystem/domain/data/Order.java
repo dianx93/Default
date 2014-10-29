@@ -9,7 +9,16 @@ public class Order implements DisplayableItem {
 	private String date;
 	private String time;
 	private double sum;
+	private String products;
 	
+	public String getProducts() {
+		return products;
+	}
+
+	public void setProducts(String products) {
+		this.products = products;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -34,8 +43,9 @@ public class Order implements DisplayableItem {
 		this.sum = sum;
 	}
 
-	public Order(double sum) {
+	public Order(double sum, String products) {
         this.sum = sum;
+        this.products = products;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     	Date newDate = new Date();

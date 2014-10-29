@@ -196,6 +196,7 @@ public class PurchaseTab {
         				domainController.submitCurrentPurchase(
         		              model.getCurrentPurchaseTableModel().getTableRows()
         		          );
+        				//TODO: add to history
         				endSale();
         				model.getCurrentPurchaseTableModel().clear();
         		    } catch (VerificationFailedException e1) {

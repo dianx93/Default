@@ -98,7 +98,7 @@ public class StockTab {
 	
 }
 
-
+//window that asks what item to add to stock
 private void openAddItemWindow() {
 	frame = new JFrame("Add item");
 	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -127,6 +127,8 @@ private void openAddItemWindow() {
 	
 }
 
+//add item window buttons
+
 private JButton createCancelAddItemButton() {
     JButton b = new JButton("Cancel");
     b.addActionListener(new ActionListener() {
@@ -148,6 +150,7 @@ private JButton createAddItemButton() {
         addItemButtonClicked();
       }
       
+      //adds item that has been given in fields
 	private void addItemButtonClicked() {
 		String itemName = nameField.getText();
 		double itemPrice;

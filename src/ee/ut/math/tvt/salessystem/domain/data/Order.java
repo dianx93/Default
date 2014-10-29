@@ -10,11 +10,6 @@ public class Order implements DisplayableItem {
 	private String time;
 	private double sum;
 	
-	
-	//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	//date = new Date();
-	//System.out.println(dateFormat.format(date)); 
-	
 	public String getDate() {
 		return date;
 	}
@@ -51,7 +46,6 @@ public class Order implements DisplayableItem {
 
 	@Override
 	public Long getId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

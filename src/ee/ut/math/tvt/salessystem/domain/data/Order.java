@@ -6,23 +6,28 @@ import java.util.Date;
 
 public class Order implements DisplayableItem {
 
-	private String date;
-	private String time;
+	private Date date;
+	private Date time;
 	private double sum;
 	
-	public String getDate() {
+	
+	//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	//date = new Date();
+	//System.out.println(dateFormat.format(date)); 
+	
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public String getTime() {
+	public Date getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(Date time) {
 		this.time = time;
 	}
 
@@ -33,22 +38,15 @@ public class Order implements DisplayableItem {
 	public void setSum(double sum) {
 		this.sum = sum;
 	}
-	
-	public Order(double sum) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-		Date newDate = new Date();
-        this.date = dateFormat.format(newDate);
-        this.time = timeFormat.format(newDate);
-        this.sum = sum;
-        
-    }
+
+	public Order() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Long getId() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

@@ -36,24 +36,5 @@ public class HistoryTableModel extends SalesSystemTableModel<Order> {
 				+ " order with total sum of " + order.getSum());
 		fireTableDataChanged();
 	}
-	
-	@Override
-	public String toString() {
-		final StringBuffer buffer = new StringBuffer();
-
-		for (int i = 0; i < headers.length; i++)
-			buffer.append(headers[i] + "\t");
-		buffer.append("\n");
-
-		for (final Order order : rows) {
-			buffer.append(order.getDate() + "\t");
-			buffer.append(order.getTime() + "\t");
-			buffer.append(order.getSum() + "\t");
-			buffer.append("\n");
-		}
-
-		return buffer.toString();
-	}
-	
 
 }

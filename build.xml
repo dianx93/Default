@@ -1,4 +1,4 @@
-<project name="POS" basedir="." default="git_push">
+<project name="POS" basedir=".">
 
 	<property name="src.dir" value="${basedir}/src" />
 	<property name="dist.dir" value="${basedir}/build" />
@@ -102,6 +102,24 @@
 			<arg value="push" />
 			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
 		</exec>
+	</target>
+	
+	<target name="git_tag">
+		<input message="Homework nr:" addproperty="homework.nr" defaultvalue="" />
+		<exec executable="git" dir="">
+			<arg value="tag" />
+			<arg value="-a" />
+			<arg value="homework_${homework.nr}" />
+			<arg value="-m" />
+			<arg value="&quot;Homework ${homework.nr}&quot;"/>
+		</exec>
+		<input message="Username:" addproperty="commit.username" defaultvalue="" />
+		<input message="Password:" addproperty="commit.password" defaultvalue="" />
+		<exec executable="git" dir="">
+			<arg value="push" />
+			<arg value="--tags" />
+			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
+			</exec>
 	</target>
 
 

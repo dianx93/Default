@@ -4,9 +4,12 @@ import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -25,6 +28,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -47,6 +51,8 @@ public class PurchaseItemPanel extends JPanel {
 
     private JButton addItemButton;
 
+    private JFrame errorFrame;
+    
     // Warehouse model
     private SalesSystemModel model;
 
@@ -192,17 +198,6 @@ public class PurchaseItemPanel extends JPanel {
             return null;
         }
     }
-    /*
-    private StockItem getStockItemByBarcode(int code) {
-    	try {
-            //int code = Integer.parseInt(barCodeField.getText());
-            return model.getWarehouseTableModel().getItemById(code);
-        } catch (NumberFormatException ex) {
-            return null;
-        } catch (NoSuchElementException ex) {
-            return null;
-        }
-    }/*
 
     /**
      * Add new item to the cart.
@@ -218,7 +213,7 @@ public class PurchaseItemPanel extends JPanel {
                 quantity = 1;
             }
             if(stockItem.getQuantity()<quantity){
-            	//TODO: errorMessage("Not enough items in stock.");
+            	errorFrame = createErrorWindow("Not enough items in stock.");
             }
             else{
             model.getCurrentPurchaseTableModel()
@@ -228,7 +223,36 @@ public class PurchaseItemPanel extends JPanel {
         }
     }
 
-    /**
+    private JFrame createErrorWindow(String string) {
+    	final JFrame errorFrame = new JFrame("Error");
+    	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        errorFrame.setLocation((screen.width - 450) / 2, (screen.height - 200) / 2);
+        JPanel errorJPanel = new JPanel();
+        errorFrame.add(errorJPanel);
+        FlowLayout errorLayout = new FlowLayout();
+        errorJPanel.setLayout(errorLayout);
+        JLabel errorLabel = new JLabel(string);
+        errorJPanel.add(errorLabel);
+        errorLayout.setHgap(5);
+        JButton okButton = new JButton("      Ok      ");
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              okButtonClicked();
+            }
+
+            private void okButtonClicked() {
+          	  errorFrame.dispose();
+            }
+      	
+          });
+        errorJPanel.add(okButton);
+        errorFrame.pack();
+        errorFrame.setVisible(true);
+        return errorFrame;
+		
+	}
+
+	/**
      * Sets whether or not this component is enabled.
      */
     @Override

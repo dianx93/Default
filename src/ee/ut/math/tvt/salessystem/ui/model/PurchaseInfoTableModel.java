@@ -58,13 +58,20 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
      */
     public void addItem(final SoldItem item) {
     	boolean exists = false;
+    	
     	for (final SoldItem soldItem : rows) {
             if (soldItem.getId() == item.getId())
-                soldItem.setQuantity(soldItem.getQuantity()+item.getQuantity());
                 exists = true;
         }
         if(!exists){
             rows.add(item);
+        }
+        else {
+        	for (final SoldItem soldItem : rows) {
+                if (soldItem.getId() == item.getId())
+                    soldItem.setQuantity(soldItem.getQuantity()+item.getQuantity());
+                    exists = false;
+            }
         }
         log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
         fireTableDataChanged();

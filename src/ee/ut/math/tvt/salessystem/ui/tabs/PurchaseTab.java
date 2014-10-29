@@ -244,10 +244,8 @@ public class PurchaseTab {
 
   /** Event handler for the <code>submit purchase</code> event. */
   protected void submitPurchaseButtonClicked() {
-    log.info("Sale submitted");
-    //try {
-
-        frame = createPaymentFrame();
+	  log.info("Sale submitted");
+      frame = createPaymentFrame();
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       
   }

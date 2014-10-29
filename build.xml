@@ -96,9 +96,10 @@
 			<arg value="-m" />
 			<arg value="${commit.description}" />
 		</exec>
+		<input message="Username:" addproperty="commit.username" defaultvalue="" />
+		<input message="Password:" addproperty="commit.password" defaultvalue="" />
 		<exec executable="git" dir="">
 			<arg value="push" />
-			<input message="Username:" addproperty="commit.username" defaultvalue="" />
 			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
 		</exec>
 	</target>

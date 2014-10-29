@@ -33,9 +33,9 @@ public class Intro extends Application {
 				primaryStage.setScene(scene);
 				primaryStage.show();
 				log.info("Intro window opened");
-				final SalesSystemUI ui = new SalesSystemUI(domainController);
-				ui.setVisible(true);
-				primaryStage.close();
+//				final SalesSystemUI ui = new SalesSystemUI(domainController);
+//				ui.setVisible(true);
+//				primaryStage.close();
 				
 			}
 		} catch (Exception e) {

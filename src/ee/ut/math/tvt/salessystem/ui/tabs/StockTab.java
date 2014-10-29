@@ -36,6 +36,7 @@ public class StockTab {
   private JTextField nameField;
   private JTextField priceField;
   private JTextField quantityField;
+  private JTextField barcodeField;
   
   
   public StockTab(SalesSystemModel model) {
@@ -97,16 +98,19 @@ public class StockTab {
 	
 }
 
-  //TODO: ask items barcode
+
 private void openAddItemWindow() {
 	frame = new JFrame("Add item");
 	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     frame.setLocation((screen.width - 450) / 2, (screen.height - 200) / 2);
     JPanel addItemJPanel = new JPanel();
-    GridLayout addItemGridLayout = new GridLayout(4,2);
+    GridLayout addItemGridLayout = new GridLayout(5,2);
     frame.add(addItemJPanel);
     addItemJPanel.setLayout(addItemGridLayout);
     addItemJPanel.setBorder(new EmptyBorder(10,10,10,10));
+    addItemJPanel.add(new JLabel("Barcode:   ", SwingConstants.RIGHT));
+    barcodeField = new JTextField(20);
+    addItemJPanel.add(barcodeField);
     addItemJPanel.add(new JLabel("Name:  ", SwingConstants.RIGHT));
     nameField = new JTextField(20);
     addItemJPanel.add(nameField);
@@ -114,7 +118,7 @@ private void openAddItemWindow() {
     priceField = new JTextField(20);
     addItemJPanel.add(priceField);
     addItemJPanel.add(new JLabel("Quantity:  ", SwingConstants.RIGHT));
-    quantityField = new JTextField(0);
+    quantityField = new JTextField(20);
     addItemJPanel.add(quantityField);
     addItemJPanel.add(createCancelAddItemButton());
     addItemJPanel.add(createAddItemButton());
@@ -148,6 +152,7 @@ private JButton createAddItemButton() {
 		String itemName = nameField.getText();
 		double itemPrice;
 		int itemQuantity;
+		long itemBarcode;
 		try {
 			itemPrice = Double.parseDouble(priceField.getText());
 		} catch (NumberFormatException ex) {
@@ -158,13 +163,15 @@ private JButton createAddItemButton() {
 		} catch (NumberFormatException ex) {
 			itemQuantity = 1;
 		}
-		int oldId = model.getWarehouseTableModel().getRowCount();
-		long id = oldId;
-		StockItem addedItem = new StockItem(id, itemName, "", itemPrice, itemQuantity);
+		try {
+			itemBarcode = Long.parseLong(barcodeField.getText());
+		} catch (NumberFormatException ex) {
+			itemBarcode = model.getWarehouseTableModel().getRowCount();
+		}
+		StockItem addedItem = new StockItem(itemBarcode, itemName, "", itemPrice, itemQuantity);
 		model.getWarehouseTableModel().addItem(addedItem);
 		//TODO: implement on log
 		//log.debug("item added:", addedItem.toString());
-		//TODO: refresh stock tab
 		frame.dispose();
 	}
     });

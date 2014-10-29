@@ -1,8 +1,11 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
+import java.util.NoSuchElementException;
+
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.SalesSystemUI;
 
 /**
@@ -62,8 +65,15 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
          * XXX In case such stockItem already exists increase the quantity of the
          * existing stock.
          */
-        
-        rows.add(item);
+    	boolean exists = false;
+    	for (final SoldItem soldItem : rows) {
+            if (soldItem.getId() == item.getId())
+                soldItem.setQuantity(soldItem.getQuantity()+item.getQuantity());
+                exists = true;
+        }
+        if(!exists){
+            rows.add(item);
+        }
         log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
         fireTableDataChanged();
     }

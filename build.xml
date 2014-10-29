@@ -101,8 +101,6 @@
 		<exec executable="git" dir="">
 			<arg value="push" />
 			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
-			<arg value="origin"/>
-			<arg value="master"/>
 		</exec>
 	</target>
 	

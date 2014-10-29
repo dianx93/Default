@@ -100,7 +100,7 @@
 		<input message="Password:" addproperty="commit.password" defaultvalue="" />
 		<exec executable="git" dir="">
 			<arg value="push" />
-			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
+			<arg value="git://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
 			<arg value="origin:master"/>
 		</exec>
 	</target>

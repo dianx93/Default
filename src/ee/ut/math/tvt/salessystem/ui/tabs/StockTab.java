@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
 import java.awt.Color;
@@ -20,11 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.JTableHeader;
-
 
 public class StockTab {
 
@@ -98,6 +97,7 @@ public class StockTab {
 	
 }
 
+  //TODO: ask items barcode
 private void openAddItemWindow() {
 	frame = new JFrame("Add item");
 	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -143,9 +143,28 @@ private JButton createAddItemButton() {
       public void actionPerformed(ActionEvent e) {
         addItemButtonClicked();
       }
-//TODO: addItem();
+      
 	private void addItemButtonClicked() {
-		//model.getWarehouseTableModel().addItem(stockItem);
+		String itemName = nameField.getText();
+		double itemPrice;
+		int itemQuantity;
+		try {
+			itemPrice = Double.parseDouble(priceField.getText());
+		} catch (NumberFormatException ex) {
+            itemPrice = 0.0;
+        }
+		try {
+			itemQuantity = Integer.parseInt(quantityField.getText());
+		} catch (NumberFormatException ex) {
+			itemQuantity = 1;
+		}
+		int oldId = model.getWarehouseTableModel().getRowCount();
+		long id = oldId;
+		StockItem addedItem = new StockItem(id, itemName, "", itemPrice, itemQuantity);
+		model.getWarehouseTableModel().addItem(addedItem);
+		//TODO: implement on log
+		//log.debug("item added:", addedItem.toString());
+		//TODO: refresh stock tab
 		frame.dispose();
 	}
     });

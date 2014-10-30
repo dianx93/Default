@@ -8,6 +8,7 @@
 	<property name="lib.dir" value="${basedir}/lib" />
 	<property name="res.dir" value="${basedir}/etc/res" />
 	<property name="Main-Class" value="ee.ut.math.tvt.teamDefault.Intro" />
+
 	<property file="${res.dir}/application.properties" />
 
 
@@ -22,7 +23,7 @@
 		<dirset dir="${res.dir}" />
 		<pathelement path="${res.dir}" />
 	</path>
-
+	
 	<target name="clean">
 		<delete dir="${dist.dir}" />
 	</target>
@@ -72,19 +73,6 @@
 		</java>
 	</target>
 
-	<macrodef name="git">
-		<attribute name="command" />
-		<attribute name="dir" default="" />
-		<element name="args" optional="true" />
-		<sequential>
-			<echo message="git @{command}" />
-			<exec executable="git" dir="@{dir}">
-				<arg value="@{command}" />
-				<args />
-			</exec>
-		</sequential>
-	</macrodef>
-
 	<target name="git_commit">
 		<input message="Commit description:" addproperty="commit.description" defaultvalue="" />
 		<exec executable="git" dir="">
@@ -96,8 +84,8 @@
 			<arg value="-m" />
 			<arg value="${commit.description}" />
 		</exec>
-		<input message="Username:" addproperty="commit.username" defaultvalue="" />
-		<input message="Password:" addproperty="commit.password" defaultvalue="" />
+		<input message="Username:" addproperty="commit.username" />
+		<input message="Password:" addproperty="commit.password" />
 		<exec executable="git" dir="">
 			<arg value="push" />
 			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />

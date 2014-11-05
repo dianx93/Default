@@ -51,7 +51,17 @@
 
 	<target name="build" depends="clean">
 		<mkdir dir="${classes.dir}" />
-		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="true" debuglevel="lines,vars,source" encoding="utf-8" compiler="modern" target="1.7" source="1.7" classpathref="build.classpath" includeantruntime="false" />
+		<javac srcdir="${src.dir}"
+			destdir="${classes.dir}"
+			debug="true"
+			debuglevel="lines,vars,source"
+			encoding="utf-8"
+			compiler="modern"
+			target="1.7"
+			source="1.7"
+			classpathref="build.classpath"
+			includeantruntime="false"
+		/>
 	</target>
 
 	<target name="dist" depends="build">
@@ -72,14 +82,19 @@
 		</propertyfile>
 		<property file="${res.dir}/version.properties" />
 		<propertyfile file="${res.dir}/version.properties">
-			<entry key="build.number" value="${build.major.number}.${build.minor.number}.${build.revision.number}" />
+			<entry key="build.number"
+				value="${build.major.number}.${build.minor.number}
+				.${build.revision.number}"
+			/>
 		</propertyfile>
 	</target>
 
 	<target name="run" depends="build">
 		<java classname="${Main-Class}" classpathref="run.classpath" fork="yes">
 			<jvmarg value="-Xdebug" />
-			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,
+				server=y,suspend=n,address=1044"
+			/>
 		</java>
 	</target>
 
@@ -94,7 +109,10 @@
 	</target>
 
 	<target name="git_commit">
-		<input message="Commit description:" addproperty="commit.description" defaultvalue="" />
+		<input message="Commit description:"
+			addproperty="commit.description"
+			defaultvalue=""
+		/>
 		<exec executable="git" dir="">
 			<arg value="add" />
 			<arg value="-A" />
@@ -108,7 +126,9 @@
 		<input message="Password:" addproperty="commit.password" />
 		<exec executable="git" dir="">
 			<arg value="push" />
-			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
+			<arg value="https://${commit.username}:
+				${commit.password}@github.com/OttMatiisen/Default.git"
+			/>
 		</exec>
 	</target>
 	
@@ -126,7 +146,9 @@
 		<exec executable="git" dir="">
 			<arg value="push" />
 			<arg value="--tags" />
-			<arg value="https://${commit.username}:${commit.password}@github.com/OttMatiisen/Default.git" />
+			<arg value="https://${commit.username}:
+				${commit.password}@github.com/OttMatiisen/Default.git"
+			/>
 			</exec>
 	</target>
 

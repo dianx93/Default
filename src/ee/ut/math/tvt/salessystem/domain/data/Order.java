@@ -4,8 +4,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 public class Order implements DisplayableItem {
 
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String date;
 	private String time;
 	private double sum;
@@ -56,7 +62,7 @@ public class Order implements DisplayableItem {
 
 	@Override
 	public Long getId() {
-		return null;
+		return id;
 	}
 
 }

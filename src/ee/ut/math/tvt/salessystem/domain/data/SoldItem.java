@@ -1,6 +1,8 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
@@ -15,14 +17,15 @@ import javax.persistence.Column;
 public class SoldItem implements Cloneable, DisplayableItem {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
 	//TODO Sale_id column
 	
-    private StockItem stockItem;
+	private StockItem stockItem;
 
     @Column(name = "stockitem_id")
-    private Long StockItemId = stockItem.getId();
+    private Long stockitemid;
     
 	@Column(name = 	"name")
     private String name;
@@ -38,7 +41,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
         this.name = stockItem.getName();
         this.price = stockItem.getPrice();
         this.quantity = quantity;
-        this.id = stockItem.getId();
+        this.stockitemid = stockItem.getId();
         
     }
     
@@ -85,5 +88,14 @@ public class SoldItem implements Cloneable, DisplayableItem {
     public void setStockItem(StockItem stockItem) {
         this.stockItem = stockItem;
     }
+	
+    public Long getStockitemid() {
+		return stockitemid;
+	}
+
+	public void setStockitemid(Long stockitemid) {
+		this.stockitemid = stockitemid;
+	}
+
     
 }

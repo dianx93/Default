@@ -30,7 +30,6 @@ import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
  */
 public class HistoryTab {
     
-    // TODO - implement!
 	private SalesSystemModel model;
 	private static HistoryTableModel Hmodel = new HistoryTableModel();
 	private JFrame infoFrame;
@@ -67,7 +66,8 @@ public class HistoryTab {
 	            FlowLayout infoLayout = new FlowLayout();
 	            infoJPanel.setLayout(infoLayout);
 	            JTextPane textPane = new JTextPane();
-	            textPane.setText(products);
+	            int n=products.length();
+	            textPane.setText(products.substring(0,n-1));
 	            textPane.setEditable(false);
 	            infoJPanel.add(textPane);
 	            infoLayout.setHgap(5);
@@ -103,7 +103,6 @@ public class HistoryTab {
 
         panel.setBorder(BorderFactory.createTitledBorder("Purchase History"));
         
-        // TODO - Sales history tabel
         return panel;
     }
 

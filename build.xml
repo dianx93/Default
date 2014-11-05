@@ -33,9 +33,9 @@
 	</path>
 	
 	<path id="db.classpath">
-	        <pathelement location="${build.classes.dir}"/>
+	        <pathelement location="${classes.dir}"/>
 	        <!-- configuration -->
-	        <pathelement location="${conf.dir}"/>
+	        <pathelement location="${res.dir}"/>
 	        <fileset dir="${lib.dir}">
 	            <include name="*.jar"/>
 	        </fileset>

@@ -19,8 +19,10 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	
 	//TODO Sale_id column
 	
-	@Column(name = "Stockitem_id") //TODO get id
     private StockItem stockItem;
+
+    @Column(name = "stockitem_id")
+    private Long StockItemId = stockItem.getId();
     
 	@Column(name = 	"name")
     private String name;
@@ -39,7 +41,6 @@ public class SoldItem implements Cloneable, DisplayableItem {
         this.id = stockItem.getId();
         
     }
-    
     
     public Long getId() {
         return id;

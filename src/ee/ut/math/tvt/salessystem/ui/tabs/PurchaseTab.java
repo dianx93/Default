@@ -266,6 +266,7 @@ public class PurchaseTab {
   // switch UI to the state that allows to proceed with the purchase
   private void startNewSale() {
     purchasePane.reset();
+    refreshProductList();
 
     purchasePane.setEnabled(true);
     submitPurchase.setEnabled(true);
@@ -329,6 +330,11 @@ public class PurchaseTab {
     gc.gridwidth = GridBagConstraints.RELATIVE;
 
     return gc;
+  }
+  
+  
+  public void refreshProductList(){
+	  purchasePane.resetProductList();
   }
   
   // creates and returns payment window

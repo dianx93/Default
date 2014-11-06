@@ -101,14 +101,7 @@ public class PurchaseItemPanel extends JPanel {
         
         // Initialize the textfields
         productList = new JComboBox<StockItem>();
-        productList.insertItemAt(null, 0);
-        for (int i=1;i<=model.getWarehouseTableModel().getRowCount();i++){	
-        	try{
-        	productList.addItem(model.getWarehouseTableModel().getItemById(i));
-        	} catch(NoSuchElementException ex){
-        		System.out.println(ex);
-        	}
-        }
+    	resetProductList();
         productList.addItemListener(new ItemListener(){
 
 			@Override
@@ -199,6 +192,19 @@ public class PurchaseItemPanel extends JPanel {
         }
     }
 
+    //reset product list after adding items to stock
+    public void resetProductList(){
+    	productList.removeAllItems();
+    	productList.insertItemAt(null, 0);
+        for (int i=1;i<=model.getWarehouseTableModel().getRowCount();i++){	
+        	System.out.println(i);
+        	try{
+        	productList.addItem(model.getWarehouseTableModel().getItemById(i));
+        	} catch(NoSuchElementException ex){
+        		System.out.println(ex);
+        	}
+        }
+    }
     /**
      * Add new item to the cart.
      */

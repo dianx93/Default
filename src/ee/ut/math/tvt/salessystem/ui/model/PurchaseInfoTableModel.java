@@ -59,7 +59,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
     /**
      * Add new StockItem to table.
      */
-    public void addItem(final SoldItem item) {
+    public void addItem(SoldItem item) {
     	boolean exists = false;
     	
     	for (final SoldItem soldItem : rows) {

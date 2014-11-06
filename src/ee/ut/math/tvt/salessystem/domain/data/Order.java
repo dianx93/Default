@@ -3,14 +3,14 @@ package ee.ut.math.tvt.salessystem.domain.data;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 public class Order implements DisplayableItem {
-
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	static AtomicInteger nextId = new AtomicInteger();
 	private Long id;
 	private String date;
 	private String time;
@@ -57,6 +57,7 @@ public class Order implements DisplayableItem {
     	Date newDate = new Date();
         this.date = dateFormat.format(newDate);
         this.time = timeFormat.format(newDate);
+        id = new Long(nextId.incrementAndGet());
         
     }
 

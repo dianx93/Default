@@ -20,7 +20,8 @@ public class SoldItem implements Cloneable, DisplayableItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	//TODO Sale_id column
+	@Column(name = "sale_id")
+	private Long sale_id;
 	
 	private StockItem stockItem;
 
@@ -45,7 +46,15 @@ public class SoldItem implements Cloneable, DisplayableItem {
         
     }
     
-    public Long getId() {
+    public Long getSale_id() {
+		return sale_id;
+	}
+
+	public void setSale_id(Long sale_id) {
+		this.sale_id = sale_id;
+	}
+
+	public Long getId() {
         return id;
     }
     

@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.ui.tabs;
 
 import ee.ut.math.tvt.salessystem.domain.data.Order;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
@@ -198,6 +199,9 @@ public class PurchaseTab {
         		              model.getCurrentPurchaseTableModel().getTableRows()
         		          );
         				Order order = new Order(Double.parseDouble(sumField.getText()), model.getCurrentPurchaseTableModel().toString());
+        				for(SoldItem item : model.getCurrentPurchaseTableModel().getSoldItems()){
+        					item.setSale_id(order.getId());
+        				}
         				HistoryTab.getHmodel().addItem(order);
         				endSale();
         				model.getCurrentPurchaseTableModel().clear();

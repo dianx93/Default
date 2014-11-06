@@ -1,8 +1,11 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +17,9 @@ public class StockItem implements Cloneable, DisplayableItem {
 	
 	@Id
     private Long id;
+	
+	@OneToMany(mappedBy = "stockItem")
+	private Set<SoldItem> solditems;
 
 	@Column(name = "name")
     private String name;

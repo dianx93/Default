@@ -28,8 +28,8 @@
 	<path id="run.classpath">
 		<pathelement location="${classes.dir}" />
 		<fileset dir="${lib.dir}" includes="*.jar" />
-		<!--<fileset dir="${lib.hibernate.dir}" includes="*.jar" />
-		<pathelement path="${basedir}/cfg/hibernate.cfg.xml" />-->
+		<fileset dir="${lib.hibernate.dir}" includes="*.jar" />
+		<pathelement location="${basedir}/conf" />
 		<dirset dir="${res.dir}" />
 		<pathelement path="${res.dir}" />
 	</path>

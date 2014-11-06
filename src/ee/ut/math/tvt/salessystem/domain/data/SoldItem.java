@@ -1,5 +1,7 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +20,10 @@ import javax.persistence.Column;
 @Table(name = "SOLDITEM")
 public class SoldItem implements Cloneable, DisplayableItem {
 
+	static AtomicInteger nextId = new AtomicInteger();
+	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
 	@Column(name = "sale_id")
@@ -47,6 +51,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
         this.price = stockItem.getPrice();
         this.quantity = quantity;
         this.stockitemid = stockItem.getId();
+        id = new Long(nextId.incrementAndGet());
         
     }
     

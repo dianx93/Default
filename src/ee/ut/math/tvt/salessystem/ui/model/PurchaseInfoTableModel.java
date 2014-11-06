@@ -63,7 +63,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
     	boolean exists = false;
     	
     	for (final SoldItem soldItem : rows) {
-            if (soldItem.getId() == item.getId())
+            if (soldItem.getStockitemid() == item.getStockitemid())
                 exists = true;
         }
         if(!exists){
@@ -71,7 +71,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
         }
         else {
         	for (final SoldItem soldItem : rows) {
-                if (soldItem.getId() == item.getId())
+                if (soldItem.getStockitemid() == item.getStockitemid())
                     soldItem.setQuantity(soldItem.getQuantity()+item.getQuantity());
                     exists = false;
             }

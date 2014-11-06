@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.NoSuchElementException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -172,6 +173,14 @@ private JButton createAddItemButton() {
 				itemBarcode = Long.parseLong(barcodeField.getText());
 			} catch (NumberFormatException ex) {
 				itemBarcode = model.getWarehouseTableModel().getRowCount()+1;
+				for(int i = 1; i<=model.getWarehouseTableModel().getRowCount(); i++){
+					try{
+						model.getWarehouseTableModel().getItemById(i);
+					} catch(NoSuchElementException ex1){
+						itemBarcode=i;
+						break;
+					}
+				}
 			}
 			StockItem addedItem = new StockItem(itemBarcode, itemName, "", itemPrice, itemQuantity);
 			model.getWarehouseTableModel().addItem(addedItem);

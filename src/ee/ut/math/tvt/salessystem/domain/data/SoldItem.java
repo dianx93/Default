@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Column;
 
@@ -25,12 +26,13 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	@Id
     private Long id;
 	
+	//@OneToMany maybe?
 	@Column(name = "sale_id")
 	private Long sale_id;
 	
 	@ManyToOne
 	@JoinColumn(name="STOCKITEM_ID", nullable=false)
-	private StockItem stockItem;
+	private StockItem stockItem; //seems wrong, id twice in the column?
 
     @Column(name = "stockitem_id")
     private Long stockitemid;

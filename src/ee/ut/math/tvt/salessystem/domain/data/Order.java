@@ -17,6 +17,7 @@ public class Order implements DisplayableItem {
 	static AtomicInteger nextId = new AtomicInteger();
 
 	@Id
+	//@ManyToOne?
 	private Long id;
 	
 	@Column(name = "date")

@@ -43,17 +43,16 @@ public class HistoryTab {
     
     public Component draw() {
         JPanel panel = new JPanel();
-        //This line breaks the code:
-        //JTable table = new JTable(model.getHistoryTableModel());
         final JTable table = new JTable(Hmodel);
-        //panel.add(table);
         JTableHeader header = table.getTableHeader();
         header.setReorderingAllowed(false);
         
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
             	if(event.getValueIsAdjusting()){
-            	infoFrame = openOrderInfo(Hmodel.getOrder(table.getSelectedRow()).getProducts());
+            		//so it would not trigger when no line is selected but purchase has been made.
+            		if(table.getSelectedRow()>-1)
+            			infoFrame = openOrderInfo(Hmodel.getOrder(table.getSelectedRow()).getProducts());
             	}
             }
 

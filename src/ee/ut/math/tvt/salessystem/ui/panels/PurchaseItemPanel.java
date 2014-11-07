@@ -196,12 +196,12 @@ public class PurchaseItemPanel extends JPanel {
     public void resetProductList(){
     	productList.removeAllItems();
     	productList.insertItemAt(null, 0);
-        for (int i=1;i<=model.getWarehouseTableModel().getRowCount();i++){
+    	int rows = model.getWarehouseTableModel().getRowCount();
+        for (int i=1,found=0;found<rows;i++){
         	try{
         	productList.addItem(model.getWarehouseTableModel().getItemById(i));
-        	} catch(NoSuchElementException ex){
-        		System.out.println(ex);
-        	}
+        	found++;
+        	} catch(NoSuchElementException ex){}
         }
     }
     /**

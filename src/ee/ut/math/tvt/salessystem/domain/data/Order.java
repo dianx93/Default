@@ -5,13 +5,31 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ORDER")
 public class Order implements DisplayableItem {
 	
 	static AtomicInteger nextId = new AtomicInteger();
+
+	@Id
 	private Long id;
+	
+	@Column(name = "date")
 	private String date;
+	
+	@Column(name = "time")
 	private String time;
+	
+	@Column(name = "sum")
 	private double sum;
+	
+	//multiple lines of text
+	@Column(name = "products")
 	private String products;
 	
 	public String getProducts() {

@@ -23,7 +23,6 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	static AtomicInteger nextId = new AtomicInteger();
 	
 	@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
 	@Column(name = "sale_id")

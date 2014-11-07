@@ -5,9 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 public class Order implements DisplayableItem {
 	
 	static AtomicInteger nextId = new AtomicInteger();

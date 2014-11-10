@@ -26,7 +26,7 @@ public class Order implements DisplayableItem {
 	@Column(name = "time")
 	private String time;
 	
-	@Column(name = "sum")
+	@Column(name = "purchase_sum")
 	private double sum;
 	
 	//multiple lines of text

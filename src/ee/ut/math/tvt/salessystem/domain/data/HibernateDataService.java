@@ -20,7 +20,12 @@ public class HibernateDataService {
 	}
 
 	public List<StockItem> getStockItems() {
-		List<StockItem> result = session.createQuery("from StockItems").list();
+		List<StockItem> result = session.createQuery("from StockItem").list();
+		return result;
+	}
+	
+	public List<Order> getOrders() {
+		List<Order> result = session.createQuery("from Order").list();
 		return result;
 	}
 }

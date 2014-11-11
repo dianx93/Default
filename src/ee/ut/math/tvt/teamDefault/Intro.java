@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.controller.impl.SalesDomainControllerImpl;
+import ee.ut.math.tvt.salessystem.domain.data.HibernateDataService;
 import ee.ut.math.tvt.salessystem.ui.ConsoleUI;
 import ee.ut.math.tvt.salessystem.ui.SalesSystemUI;
 
@@ -19,7 +20,7 @@ public class Intro extends Application {
 
 	public void start(Stage primaryStage) {
 
-		final SalesDomainController domainController = new SalesDomainControllerImpl();
+		final SalesDomainController domainController = new SalesDomainControllerImpl(new HibernateDataService());
 
 		try {
 			if (getParameters().getUnnamed().size() == 1

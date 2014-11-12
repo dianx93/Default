@@ -38,10 +38,16 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		// XXX - Start new purchase
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController#loadWarehouseState()
+	 * Initiating the warehouse state (old "mock" initiation left until stable)
+	 */
 	public List<StockItem> loadWarehouseState() {
-		// XXX mock implementation
 		List<StockItem> dataset = new ArrayList<StockItem>();
+		dataset.addAll(service.getStockItems());
 
+		/*
 		StockItem chips = new StockItem(1l, "Lays chips", "Potato chips", 11.0, 5);
 		StockItem chupaChups = new StockItem(2l, "Chupa-chups", "Sweets", 8.0, 8);
 	    StockItem frankfurters = new StockItem(3l, "Frankfurters", "Beer sauseges", 15.0, 12);
@@ -51,6 +57,7 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		dataset.add(chupaChups);
 		dataset.add(frankfurters);
 		dataset.add(beer);
+		*/
 		
 		return dataset;
 	}

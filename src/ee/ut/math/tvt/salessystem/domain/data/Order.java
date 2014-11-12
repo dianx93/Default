@@ -17,7 +17,6 @@ public class Order implements DisplayableItem {
 	static AtomicInteger nextId = new AtomicInteger();
 
 	@Id
-	//@ManyToOne?
 	private Long id;
 	
 	@Column(name = "date")
@@ -29,7 +28,6 @@ public class Order implements DisplayableItem {
 	@Column(name = "purchase_sum")
 	private double sum;
 	
-	//multiple lines of text
 	@Column(name = "products")
 	private String products;
 	
@@ -64,7 +62,10 @@ public class Order implements DisplayableItem {
 	public void setSum(double sum) {
 		this.sum = sum;
 	}
-
+	
+	public Order() {
+	}
+	
 	public Order(double sum, String products) {
         this.sum = sum;
         this.products = products;

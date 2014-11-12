@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,6 +20,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
 
+import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.HistoryTableModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
@@ -32,18 +32,20 @@ public class HistoryTab {
     
 	private SalesSystemModel model;
 	private static HistoryTableModel Hmodel = new HistoryTableModel();
+	private final SalesDomainController domainController;
 	private JFrame infoFrame;
 	
-	public HistoryTab(SalesSystemModel model) {
+	public HistoryTab(SalesDomainController domainController, SalesSystemModel model) {
 	    this.model = model;
+	    this.domainController = domainController;
 	  }
 
 	//model = HistoryTableModel
-    public HistoryTab() {} 
+
     
     public Component draw() {
         JPanel panel = new JPanel();
-        final JTable table = new JTable(Hmodel);
+        final JTable table = new JTable(model.getHistoryTableModel());
         JTableHeader header = table.getTableHeader();
         header.setReorderingAllowed(false);
         

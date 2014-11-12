@@ -46,6 +46,10 @@ public interface SalesDomainController {
             throws VerificationFailedException;
     
     public void endSession();
+    
+    public<T> void addItem(T item);
+    
+    public<T> void update(T item);
 
     
 }

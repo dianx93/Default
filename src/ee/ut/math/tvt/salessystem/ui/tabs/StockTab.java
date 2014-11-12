@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
@@ -32,6 +33,8 @@ public class StockTab {
 
   private SalesSystemModel model;
 
+  private final SalesDomainController domainController;
+
   private JFrame frame;
   
   private JTextField nameField;
@@ -40,8 +43,9 @@ public class StockTab {
   private JTextField barcodeField;
   
   
-  public StockTab(SalesSystemModel model) {
+  public StockTab(SalesDomainController domainController, SalesSystemModel model) {
     this.model = model;
+    this.domainController = domainController;
   }
 
   // warehouse stock tab - consists of a menu and a table
@@ -184,6 +188,8 @@ private JButton createAddItemButton() {
 			}
 			StockItem addedItem = new StockItem(itemBarcode, itemName, "", itemPrice, itemQuantity);
 			model.getWarehouseTableModel().addItem(addedItem);
+			domainController.addItem(addedItem); //works only if item is not in database TODO: FIX
+			
   		}
 		frame.dispose();
 	}

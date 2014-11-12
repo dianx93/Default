@@ -62,6 +62,14 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		return dataset;
 	}
 
+	public<T> void addItem(T item) {
+		service.addItem(item);
+	}
+	
+	public<T> void update(T item) {
+		service.update(item);
+	}
+
 	@Override
 	public void endSession() {
 		HibernateUtil.closeSession();

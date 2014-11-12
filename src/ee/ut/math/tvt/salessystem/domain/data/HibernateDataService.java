@@ -14,6 +14,18 @@ public class HibernateDataService {
 
 	private Session session = HibernateUtil.currentSession();
 
+	public<T> void addItem(T item) {
+		session.beginTransaction();
+		session.save(item);
+		session.getTransaction().commit();
+	}
+	
+	public<T> void update(T item) {
+		session.beginTransaction();
+		session.update(item);
+		session.getTransaction().commit();
+	}
+	
 	public List<SoldItem> getSoldItems() {
 		List<SoldItem> result = session.createQuery("from SoldItem").list();
 		return result;

@@ -201,8 +201,12 @@ public class PurchaseTab {
         				Order order = new Order(Double.parseDouble(sumField.getText()), model.getCurrentPurchaseTableModel().toString());
         				for(SoldItem item : model.getCurrentPurchaseTableModel().getSoldItems()){
         					item.setSale_id(order.getId());
+        					//doesn't work right now TODO
+            				//domainController.addItem(item);
         				}
         				HistoryTab.getHmodel().addItem(order);
+        				//TODO doesn't work either: "Unknown entity: ee.ut.math.tvt.salessystem.domain.data.Order"
+        				//domainController.addItem(order);
         				endSale();
         				model.getCurrentPurchaseTableModel().clear();
         		    } catch (VerificationFailedException e1) {

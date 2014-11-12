@@ -30,6 +30,9 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	@Column(name = "sale_id")
 	private Long sale_id;
 	
+	
+	//TODO: THIS DOESN'T WORK, either "user lacks privilege or object not found: STOCKITEMID" or
+	//"duplicate update of column: STOCKITEM_ID
 	@ManyToOne
 	@JoinColumn(name="STOCKITEM_ID", nullable=false)
 	private StockItem stockItem; //seems wrong, id twice in the column?

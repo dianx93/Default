@@ -187,8 +187,7 @@ private JButton createAddItemButton() {
 				}
 			}
 			StockItem addedItem = new StockItem(itemBarcode, itemName, "", itemPrice, itemQuantity);
-			model.getWarehouseTableModel().addItem(addedItem);
-			domainController.addItem(addedItem); //works only if item is not in database TODO: FIX
+			model.getWarehouseTableModel().addItem(addedItem, domainController);
 			
   		}
 		frame.dispose();

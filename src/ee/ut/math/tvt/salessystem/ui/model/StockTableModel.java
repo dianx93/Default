@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
+import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 
 /**
@@ -38,15 +39,17 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	 * same id, then existing item's quantity will be increased.
 	 * @param stockItem
 	 */
-	public void addItem(final StockItem stockItem) {
+	public void addItem(final StockItem stockItem, SalesDomainController domainController) {
 		try {
 			StockItem item = getItemById(stockItem.getId());
 			item.setQuantity(item.getQuantity() + stockItem.getQuantity());
+			domainController.update(item);
 			log.debug("Found existing item " + stockItem.getName()
 					+ " increased quantity by " + stockItem.getQuantity());
 		}
 		catch (NoSuchElementException e) {
 			rows.add(stockItem);
+			domainController.addItem(stockItem);
 			log.debug("Added " + stockItem.getName()
 					+ " quantity of " + stockItem.getQuantity());
 		}

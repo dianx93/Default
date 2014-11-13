@@ -11,9 +11,14 @@ public class SoldItemTest {
 	public void setUp() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+	// TODO
+	public void testGetSum() {
+		
+	}
+	
+	// TODO
+	public void testGetSumWithZeroQuantity() {
+		
 	}
 
 }

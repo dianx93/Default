@@ -11,9 +11,23 @@ public class OrderTest {
 	public void setUp() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+	// TODO
+	public void testAddSoldItem() {
+		
 	}
-
+	
+	// TODO
+	public void testGetSumWithNoItems() {
+			
+	}
+	
+	// TODO
+	public void testGetSumWithOneItem() {
+		
+	}
+	
+	// TODO
+	public void testGetSumWithMultipleItems() {
+		
+	}
 }

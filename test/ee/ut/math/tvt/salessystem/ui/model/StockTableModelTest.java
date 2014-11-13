@@ -11,9 +11,24 @@ public class StockTableModelTest {
 	public void setUp() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+	// TODO
+	public void testValidateNameUniqueness() {
+		
+	}
+	
+	// TODO
+	public void testHasEnoughInStock() {
+		
+	}
+	
+	// TODO
+	public void testGetItemByIdWhenItemExists() {
+		
+	}
+	
+	// TODO
+	public void testGetItemByIdWhenThrowsException() {
+		
 	}
 
 }

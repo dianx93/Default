@@ -11,9 +11,14 @@ public class StockItemTest {
 	public void setUp() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+	// TODO
+	public void testClone() {
+		
+	}
+	
+	// TODO
+	public void testGetColumn() {
+		
 	}
 
 }

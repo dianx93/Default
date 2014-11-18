@@ -54,7 +54,7 @@ public class HistoryTab {
             	if(event.getValueIsAdjusting()){
             		//so it would not trigger when no line is selected but purchase has been made.
             		if(table.getSelectedRow()>-1)
-            			infoFrame = openOrderInfo(Hmodel.getOrder(table.getSelectedRow()).getProducts());
+            			infoFrame = openOrderInfo(model.getHistoryTableModel().getOrder(table.getSelectedRow()).getProducts());
             	}
             }
 

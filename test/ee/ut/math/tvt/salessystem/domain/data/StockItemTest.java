@@ -18,6 +18,7 @@ public class StockItemTest {
 	}
 
 	// TODO: check if correct
+	@Test
 	public void testClone() {
 		StockItem item = new StockItem(1l, "TestItem", "for testing", 10.90, 2);
 		Object newItem = item.clone();
@@ -26,6 +27,7 @@ public class StockItemTest {
 	}
 	
 	// TODO: check if correct
+	@Test
 	public void testGetColumn() {
 		StockItem item = new StockItem(1l, "TestItem", "for testing", 10.90, 2);
 		Assert.assertEquals(item.getColumn(0), 1l);

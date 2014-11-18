@@ -17,16 +17,19 @@ public class StockItemTest {
 	public void setUp() {
 	}
 
-	// TODO: check if correct
 	@Test
 	public void testClone() {
 		StockItem item = new StockItem(1l, "TestItem", "for testing", 10.90, 2);
-		Object newItem = item.clone();
-		Assert.assertEquals(item, newItem);
+		StockItem newItem = (StockItem) item.clone();
+		Assert.assertEquals(item.getName(), newItem.getName());
+		Assert.assertEquals(item.getDescription(), newItem.getDescription());
+		Assert.assertEquals(item.getPrice(), newItem.getPrice());
+		Assert.assertEquals(item.getQuantity(), newItem.getQuantity());
+		Assert.assertEquals(item.getClass(), newItem.getClass());
+		Assert.assertEquals(item.getId(), newItem.getId());
 		
 	}
 	
-	// TODO: check if correct
 	@Test
 	public void testGetColumn() {
 		StockItem item = new StockItem(1l, "TestItem", "for testing", 10.90, 2);

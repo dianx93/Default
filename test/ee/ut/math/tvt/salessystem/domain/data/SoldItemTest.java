@@ -15,7 +15,6 @@ public class SoldItemTest {
 		item = new StockItem(1l, "TestItem", "for testing", 10.90, 2);
 	}
 
-	// TODO: check if works
 	@Test
 	public void testGetSum() {
 		SoldItem i = new SoldItem(item, 3);
@@ -23,11 +22,10 @@ public class SoldItemTest {
 		
 	}
 	
-	// TODO: check if works
 	@Test
 	public void testGetSumWithZeroQuantity() {
 		SoldItem i = new SoldItem(item, 0);
-		Assert.assertEquals(0, i.getSum());
+		Assert.assertEquals(0, i.getSum(), 0.0001);
 		
 	}
 

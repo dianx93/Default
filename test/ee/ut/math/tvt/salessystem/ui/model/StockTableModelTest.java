@@ -30,8 +30,12 @@ public class StockTableModelTest {
 		
 	}
 	
-	// TODO
+	// TODO: check if correct
+	@Test
 	public void testHasEnoughInStock() {
+		int quantity = (int)model.getColumnValue(item, 3);
+		Assert.assertEquals(true, 2<=quantity);
+		Assert.assertEquals(false, 3<=quantity);
 		
 	}
 	

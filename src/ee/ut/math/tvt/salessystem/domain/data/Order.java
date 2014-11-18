@@ -66,6 +66,26 @@ public class Order implements DisplayableItem {
 	public Order() {
 	}
 	
+	//private List<SoldItem> soldItems;
+	
+		/*
+		public Order(List<SoldItem> soldItems, String products){
+			this.soldItems = soldItems;
+	        this.products = products;
+	        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+	    	Date newDate = new Date();
+	        this.date = dateFormat.format(newDate);
+	        this.time = timeFormat.format(newDate);
+	        id = new Long(nextId.incrementAndGet());
+	        for(SoldItem item : soldItems) item.setSale_id(id);
+	        sum = 0;
+			for(SoldItem si : soldItems){
+				sum += si.getSum();
+			}
+			
+		}*/
+	
 	public Order(double sum, String products) {
         this.sum = sum;
         this.products = products;

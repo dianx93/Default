@@ -198,6 +198,8 @@ public class PurchaseTab {
         				domainController.submitCurrentPurchase(
         		              model.getCurrentPurchaseTableModel().getTableRows()
         		          );
+
+        				//Order order = new Order(model.getCurrentPurchaseTableModel().getSoldItems(), model.getCurrentPurchaseTableModel().toString());
         				Order order = new Order(Double.parseDouble(sumField.getText()), model.getCurrentPurchaseTableModel().toString());
         				for(SoldItem item : model.getCurrentPurchaseTableModel().getSoldItems()){
         					item.setSale_id(order.getId());

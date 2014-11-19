@@ -1,15 +1,10 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
@@ -25,13 +19,11 @@ import javax.swing.table.JTableHeader;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.Order;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
-import ee.ut.math.tvt.salessystem.ui.model.HistoryTableModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
-import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
 
 /**
  * Encapsulates everything that has to do with the purchase tab (the tab
- * labelled "History" in the menu).
+ * labeled "History" in the menu).
  */
 public class HistoryTab {
     
@@ -58,7 +50,7 @@ public class HistoryTab {
             	if(event.getValueIsAdjusting()){
             		//so it would not trigger when no line is selected but purchase has been made.
             		if(table.getSelectedRow()>-1)
-            			infoFrame = openNewOrderInfo(model.getHistoryTableModel().getOrder(table.getSelectedRow()));
+            			infoFrame = openOrderInfo(model.getHistoryTableModel().getOrder(table.getSelectedRow()));
             	}
             }
             
@@ -69,7 +61,7 @@ public class HistoryTab {
              * @param products
              * @return
              */
-            private JFrame openNewOrderInfo(Order order) {
+            private JFrame openOrderInfo(Order order) {
             	
             	final JFrame infoFrame = new JFrame("Order info");
             	JPanel infoJPanel = new JPanel();
@@ -86,6 +78,7 @@ public class HistoryTab {
  	            closeButton.addActionListener(new ActionListener() {
  	                public void actionPerformed(ActionEvent e) {
  	                  closeButtonClicked();
+ 	                  model.getCurrentOrderTableModel().clear();
  	                }
 
  	                private void closeButtonClicked() {
@@ -109,37 +102,6 @@ public class HistoryTab {
                 return gc;
             }
             
-			private JFrame openOrderInfo(String products) {
-				final JFrame infoFrame = new JFrame("Order info");
-	        	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-	            infoFrame.setLocation((screen.width - 450) / 2, (screen.height - 200) / 2);
-	            JPanel infoJPanel = new JPanel();
-	            infoFrame.add(infoJPanel);
-	            FlowLayout infoLayout = new FlowLayout();
-	            infoJPanel.setLayout(infoLayout);
-	            JTextPane textPane = new JTextPane();
-	            int n=products.length();
-	            textPane.setText(products.substring(0,n));
-	            textPane.setEditable(false);
-	            infoJPanel.add(textPane);
-	            infoLayout.setHgap(5);
-	            JButton closeButton = new JButton("   Close   ");
-	            closeButton.addActionListener(new ActionListener() {
-	                public void actionPerformed(ActionEvent e) {
-	                  closeButtonClicked();
-	                }
-
-	                private void closeButtonClicked() {
-	              	  infoFrame.dispose();
-	              	  table.clearSelection();
-	                }
-	          	
-	              });
-	            infoJPanel.add(closeButton);
-	            infoFrame.pack();
-	            infoFrame.setVisible(true);
-	            return infoFrame;
-			}
         });
 
         JScrollPane scrollPane = new JScrollPane(table);

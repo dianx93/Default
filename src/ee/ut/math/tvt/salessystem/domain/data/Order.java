@@ -3,7 +3,6 @@ package ee.ut.math.tvt.salessystem.domain.data;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ORDER")
 public class Order implements DisplayableItem {
-	
-	static AtomicInteger nextId = new AtomicInteger();
 
 	@Id
 	private Long id;
@@ -86,7 +83,7 @@ public class Order implements DisplayableItem {
 			
 		}*/
 	
-	public Order(double sum, String products) {
+	public Order(double sum, String products, Long lastId) {
         this.sum = sum;
         this.products = products;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -94,7 +91,7 @@ public class Order implements DisplayableItem {
     	Date newDate = new Date();
         this.date = dateFormat.format(newDate);
         this.time = timeFormat.format(newDate);
-        id = new Long(nextId.incrementAndGet());
+        id = (lastId + 1);
         
     }
 

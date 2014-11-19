@@ -200,9 +200,10 @@ public class PurchaseTab {
         		          );
 
         				//Order order = new Order(model.getCurrentPurchaseTableModel().getSoldItems(), model.getCurrentPurchaseTableModel().toString());
-        				Order order = new Order(Double.parseDouble(sumField.getText()), model.getCurrentPurchaseTableModel().toString());
+        				Order order = new Order(Double.parseDouble(sumField.getText()), model.getCurrentPurchaseTableModel().toString(), model.getHistoryTableModel().getLastId());
         				for(SoldItem item : model.getCurrentPurchaseTableModel().getSoldItems()){
         					item.setSale_id(order.getId());
+        					log.info("Check " + item.getName() + " id " + item.getSale_id());
         					//doesn't work right now TODO
             				//domainController.addItem(item);
         				}

@@ -55,4 +55,8 @@ public class HistoryTableModel extends SalesSystemTableModel<Order> {
 		return rows.get(rownr);
 	}
 
+	public Long getLastId() {
+		return rows.get(rows.size()-1).getId();
+	}
+
 }

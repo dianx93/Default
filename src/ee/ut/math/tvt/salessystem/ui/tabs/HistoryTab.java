@@ -60,6 +60,13 @@ public class HistoryTab {
             	}
             }
             
+            
+            /**
+             * When individual order is clicked, creates new window to show individual SoldItems in it
+             * @author Ott
+             * @param products
+             * @return
+             */
             private JFrame openNewOrderInfo(String products) {
             	final JFrame infoFrame = new JFrame("Order info");
             	JPanel infoJPanel = new JPanel();

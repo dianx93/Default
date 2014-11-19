@@ -17,6 +17,12 @@ public class SalesSystemModel {
     // Current shopping cart model
     private PurchaseInfoTableModel currentPurchaseTableModel;
     
+    /**
+     * Order details model
+     * @author Ott
+     */
+    private PurchaseInfoTableModel currentOrderTableModel;
+    
     //Current history model
     private HistoryTableModel historyTableModel;
 
@@ -31,11 +37,13 @@ public class SalesSystemModel {
         
         warehouseTableModel = new StockTableModel();
         currentPurchaseTableModel = new PurchaseInfoTableModel();
+        currentOrderTableModel = new PurchaseInfoTableModel();
         historyTableModel = new HistoryTableModel();
 
         // populate stock model with data from the warehouse
         warehouseTableModel.populateWithData(domainController.loadWarehouseState());
         historyTableModel.populateWithData(domainController.loadHistoryState());
+        currentOrderTableModel.populateWithData(domainController.loadSoldItems());
 
     }
 
@@ -44,6 +52,10 @@ public class SalesSystemModel {
     }
 
     public PurchaseInfoTableModel getCurrentPurchaseTableModel() {
+        return currentPurchaseTableModel;
+    }
+    
+    public PurchaseInfoTableModel getCurrentOrderTableModel() {
         return currentPurchaseTableModel;
     }
     

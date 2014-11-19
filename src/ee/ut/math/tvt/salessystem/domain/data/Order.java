@@ -1,12 +1,16 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +31,10 @@ public class Order implements DisplayableItem {
 	
 	@Column(name = "products")
 	private String products;
+	
+	
+//	@OneToMany(mappedBy="order")
+//	private Set<SoldItem> items;
 	
 	public String getProducts() {
 		return products;
@@ -99,5 +107,9 @@ public class Order implements DisplayableItem {
 	public Long getId() {
 		return id;
 	}
+
+//	public Set<SoldItem> getItems() {
+//		return items;
+//	}
 
 }

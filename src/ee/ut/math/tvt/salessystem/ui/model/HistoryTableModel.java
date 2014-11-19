@@ -55,6 +55,11 @@ public class HistoryTableModel extends SalesSystemTableModel<Order> {
 		return rows.get(rownr);
 	}
 
+	/**
+	 * Returns Id of last Order for makeshift autoincrement purposes
+	 * @author Ott
+	 * @return
+	 */
 	public Long getLastId() {
 		return rows.get(rows.size()-1).getId();
 	}

@@ -1,12 +1,8 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
-import java.util.NoSuchElementException;
-
 import org.apache.log4j.Logger;
 
-import ee.ut.math.tvt.salessystem.domain.data.DisplayableItem;
 import ee.ut.math.tvt.salessystem.domain.data.Order;
-import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 
 public class HistoryTableModel extends SalesSystemTableModel<Order> {
 	private static final long serialVersionUID = 1L;
@@ -57,6 +53,16 @@ public class HistoryTableModel extends SalesSystemTableModel<Order> {
 	
 	public Order getOrder(int rownr){
 		return rows.get(rownr);
+	}
+
+	/**
+	 * Returns Id of last Order for makeshift autoincrement purposes
+	 * @author Ott
+	 * @return
+	 */
+	public Long getLastId() {
+		if(rows.size()<1){return 0l;} //?
+		else return rows.get(rows.size()-1).getId();
 	}
 
 }

@@ -105,6 +105,7 @@ public class Order implements DisplayableItem {
     	Date newDate = new Date();
         this.date = dateFormat.format(newDate);
         this.time = timeFormat.format(newDate);
+        this.sum += item.getSum();
 	}
 
 	@Override

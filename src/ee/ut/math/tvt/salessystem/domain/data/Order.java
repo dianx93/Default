@@ -4,6 +4,7 @@ package ee.ut.math.tvt.salessystem.domain.data;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,23 +71,21 @@ public class Order implements DisplayableItem {
 	
 	//private List<SoldItem> soldItems;
 	
-		/*
-		public Order(List<SoldItem> soldItems, String products){
-			this.soldItems = soldItems;
-	        this.products = products;
-	        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-	        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-	    	Date newDate = new Date();
-	        this.date = dateFormat.format(newDate);
-	        this.time = timeFormat.format(newDate);
-	        id = new Long(nextId.incrementAndGet());
-	        for(SoldItem item : soldItems) item.setSale_id(id);
-	        sum = 0;
-			for(SoldItem si : soldItems){
-				sum += si.getSum();
-			}
-			
-		}*/
+		
+	public Order(List<SoldItem> soldItems, Long lastId){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        id = (lastId + 1);
+    	Date newDate = new Date();
+        this.date = dateFormat.format(newDate);
+        this.time = timeFormat.format(newDate);
+        for(SoldItem item : soldItems) item.setSale_id(id);
+        sum = 0;
+		for(SoldItem si : soldItems){
+			sum += si.getSum();
+		}
+		
+	}
 	
 	public Order(double sum, String products, Long lastId) {
         this.sum = sum;
@@ -99,6 +98,14 @@ public class Order implements DisplayableItem {
         id = (lastId + 1);
         
     }
+	
+	public void addSoldItem(SoldItem item){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+    	Date newDate = new Date();
+        this.date = dateFormat.format(newDate);
+        this.time = timeFormat.format(newDate);
+	}
 
 	@Override
 	public Long getId() {

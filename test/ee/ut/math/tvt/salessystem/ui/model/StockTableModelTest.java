@@ -19,7 +19,7 @@ public class StockTableModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		item = new StockItem(1l, "TestItem", "for testing", 10.90, 2);
+		item = new StockItem(50l, "TestItem", "for testing", 10.90, 2);
 		model = new StockTableModel();
 		SalesDomainController domainController = new SalesDomainControllerImpl(new HibernateDataService());;
 		model.addItem(item, domainController);
@@ -42,8 +42,7 @@ public class StockTableModelTest {
 	// TODO: check if correct
 	@Test
 	public void testGetItemByIdWhenItemExists() {
-		StockItem i = model.getItemById(1l);
-		Assert.assertEquals(item, i);
+		Assert.assertEquals(item, model.getItemById(50l));
 	}
 	
 	// TODO: check if correct

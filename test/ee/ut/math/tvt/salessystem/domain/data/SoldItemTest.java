@@ -12,7 +12,7 @@ public class SoldItemTest {
 
 	@Before
 	public void setUp() throws Exception {
-		item = new StockItem(1l, "TestItem", "for testing", 10.90, 2);
+		item = new StockItem(50l, "TestItem", "for testing", 10.90, 2);
 	}
 
 	@Test

@@ -7,8 +7,10 @@ import org.junit.Test;
 
 public class OrderTest {
 
+	StockItem item;
 	@Before
 	public void setUp() throws Exception {
+		item = new StockItem(1l, "TestItem", "for testing", 10.90, 2);
 	}
 
 	// TODO

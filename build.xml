@@ -48,13 +48,12 @@
 			<include name="*.jar"/>
 		</fileset>
 	</path>
-<<<<<<< HEAD
 	
-	<path id="test-classpath">
+	<path id="test.classpath">
 			<fileset dir="${lib.dir}">
 				<include name="*.jar"/>
 			</fileset>
-		    <pathelement path="${build.classes.dir}/" />
+		    <pathelement path="${classes.dir}/" />
 			<pathelement path="${build.test.dir}/" />
 		</path>
 	
@@ -78,6 +77,7 @@
 	</target>
 	
 	<target name="build-tests" depends="build" description="Build the system">
+		<mkdir dir="${build.test.dir}"/>
 			<javac
 	            srcdir="${test.dir}"
 	            destdir="${build.test.dir}"
@@ -85,12 +85,13 @@
 	            debuglevel="lines,vars,source"
 	            encoding="utf-8"
 	            compiler="modern"
-	            target="1.5"
-	            source="1.5"
-	        	classpathref="libs"
+	            target="1.7"
+	            source="1.7"
+	        	classpathref="build.classpath"
+				includeantruntime="false"
 	        >
 				<classpath>
-					<pathelement path="${build.classes.dir}" />
+					<pathelement path="${classes.dir}" />
 				</classpath>
 			</javac>
 		</target>
@@ -213,7 +214,7 @@
 	<target name="test" depends="build-tests" description="Run the template application">
 
 			<junit>
-				<classpath refid="test-classpath" />
+				<classpath refid="test.classpath" />
 
 				<formatter type="brief" usefile="false" />
 				<batchtest>
@@ -223,7 +224,6 @@
 
 
 		</target>
-	</target>
 
 	<!-- imported from "mentor-keerleb" POS and tweaked to fit into build -->
 	<target name="mostpopularsql">

@@ -61,7 +61,7 @@ public class HistoryTableModel extends SalesSystemTableModel<Order> {
 	 * @return
 	 */
 	public Long getLastId() {
-		if(rows.size()<1){return 0l;} //?
+		if(rows.size()<1){return 0l;}
 		else return rows.get(rows.size()-1).getId();
 	}
 

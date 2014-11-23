@@ -1,6 +1,5 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
-import static org.junit.Assert.*;
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -11,12 +10,10 @@ import ee.ut.math.tvt.salessystem.domain.data.Order;
 public class HistoryTableModelTest {
 
 	private HistoryTableModel model;
-	private Order order;
 	
 	@Before
 	public void setUp() throws Exception {
 		model = new HistoryTableModel();
-		order = new Order(20.0, "products info for testing", model.getLastId());
 		
 	}
 

@@ -1,7 +1,5 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +12,7 @@ public class OrderTest {
 
 	StockItem item1;
 	StockItem item2;
+	
 	@Before
 	public void setUp() throws Exception {
 		item1 = new StockItem(1l, "TestItem1", "for testing", 10.90, 2);

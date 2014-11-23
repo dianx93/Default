@@ -1,16 +1,12 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
-import static org.junit.Assert.*;
-import junit.framework.Assert;
-
 import java.util.NoSuchElementException;
+
+import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.salessystem.domain.controller.impl.SalesDomainControllerImpl;
-import ee.ut.math.tvt.salessystem.domain.data.HibernateDataService;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 
 public class StockTableModelTest {
@@ -21,8 +17,6 @@ public class StockTableModelTest {
 	public void setUp() throws Exception {
 		item = new StockItem(50l, "TestItem", "for testing", 10.90, 2);
 		model = new StockTableModel();
-		//SalesDomainController domainController = new SalesDomainControllerImpl(new HibernateDataService());;
-		//model.addItem(item, domainController);
 		model.addItem(item);
 	}
 
@@ -47,7 +41,7 @@ public class StockTableModelTest {
 	
 	@Test(expected=NoSuchElementException.class)
 	public void testGetItemByIdWhenThrowsException() {
-		StockItem i = model.getItemById(20);
+		StockItem item = model.getItemById(20);
 	}
 
 }

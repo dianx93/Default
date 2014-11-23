@@ -55,6 +55,18 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		}
 		fireTableDataChanged();
 	}
+	
+	public void addItem(StockItem stockItem){
+		try {
+			StockItem item = getItemById(stockItem.getId());
+			item.setQuantity(item.getQuantity() + stockItem.getQuantity());
+		}
+		catch (NoSuchElementException e) {
+			rows.add(stockItem);
+		}
+		fireTableDataChanged();
+	}
+	
 
 	@Override
 	public String toString() {

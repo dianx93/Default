@@ -21,16 +21,17 @@ public class StockTableModelTest {
 	public void setUp() throws Exception {
 		item = new StockItem(50l, "TestItem", "for testing", 10.90, 2);
 		model = new StockTableModel();
-		SalesDomainController domainController = new SalesDomainControllerImpl(new HibernateDataService());;
-		model.addItem(item, domainController);
+		//SalesDomainController domainController = new SalesDomainControllerImpl(new HibernateDataService());;
+		//model.addItem(item, domainController);
+		model.addItem(item);
 	}
 
-	// TODO
+	// TODO: isUnique(i);
 	public void testValidateNameUniqueness() {
+		//Assert.assertEquals(model.isUnique(item), true);
 		
 	}
 	
-	// TODO: check if correct
 	@Test
 	public void testHasEnoughInStock() {
 		int quantity = (int)model.getColumnValue(item, 3);
@@ -39,13 +40,11 @@ public class StockTableModelTest {
 		
 	}
 	
-	// TODO: check if correct
 	@Test
 	public void testGetItemByIdWhenItemExists() {
 		Assert.assertEquals(item, model.getItemById(50l));
 	}
 	
-	// TODO: check if correct
 	@Test(expected=NoSuchElementException.class)
 	public void testGetItemByIdWhenThrowsException() {
 		StockItem i = model.getItemById(20);

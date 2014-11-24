@@ -67,6 +67,17 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		fireTableDataChanged();
 	}
 	
+	public boolean isUnique(StockItem item, boolean existing){
+		int i = 0;
+		for(StockItem stockItem : rows){
+			if(stockItem.getName().equals(item.getName())&&stockItem.getPrice()==item.getPrice()){
+				i++;
+			}
+		}
+		if(existing&&i>1)return false;
+		if(!existing&&i>0)return false;
+		else return true;
+	}
 
 	@Override
 	public String toString() {

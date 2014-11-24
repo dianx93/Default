@@ -20,9 +20,11 @@ public class StockTableModelTest {
 		model.addItem(item);
 	}
 
-	// TODO: isUnique(i);
+	@Test
 	public void testValidateNameUniqueness() {
-		//Assert.assertEquals(model.isUnique(item), true);
+		Assert.assertEquals(true, model.isUnique(item, true));
+		StockItem newItem = new StockItem(51l, "TestItem2", "for testing", 1.2, 4);
+		Assert.assertEquals(true, model.isUnique(newItem, false));
 		
 	}
 	

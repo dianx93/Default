@@ -70,7 +70,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	public boolean isUnique(StockItem item, boolean existing){
 		int i = 0;
 		for(StockItem stockItem : rows){
-			if(stockItem.getName().equals(item.getName())&&stockItem.getPrice()==item.getPrice()){
+			if(stockItem.getName().equals(item.getName())){
 				i++;
 			}
 		}

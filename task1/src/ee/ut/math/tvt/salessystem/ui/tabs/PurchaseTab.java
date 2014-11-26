@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
 
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.Order;
@@ -30,7 +29,6 @@ import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
-import ee.ut.math.tvt.salessystem.util.HibernateUtil;
 
 /**
  * Encapsulates everything that has to do with the purchase tab (the tab
@@ -51,8 +49,6 @@ public class PurchaseTab {
 	private PurchaseItemPanel purchasePane;
 
 	private SalesSystemModel model;
-	
-	private Session session = HibernateUtil.currentSession();
 
 	private JFrame frame;
 
@@ -193,7 +189,6 @@ public class PurchaseTab {
 									.getCurrentPurchaseTableModel()
 									.getSoldItems()) {
 								item.setSale_id(order.getId());
-								
 							}
 							model.getHistoryTableModel().addItem(order);
 							endSale();

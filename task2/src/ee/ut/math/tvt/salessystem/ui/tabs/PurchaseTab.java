@@ -43,7 +43,7 @@ public class PurchaseTab {
 
     private JFrame parent;
 
-    public PurchaseTab(SalesDomainController controller, SalesSystemModel model,
+	public PurchaseTab(SalesDomainController controller, SalesSystemModel model,
             JFrame parent) {
         this.domainController = controller;
         this.model = model;

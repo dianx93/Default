@@ -94,9 +94,7 @@ public class SalesDomainControllerImpl implements SalesDomainController {
         tx.commit();
 
         model.getPurchaseHistoryTableModel().addRow(sale);
-
     }
-
 
     public void createStockItem(StockItem stockItem) {
         // Begin transaction
@@ -107,28 +105,19 @@ public class SalesDomainControllerImpl implements SalesDomainController {
         log.info("Added new stockItem : " + stockItem);
     }
 
-
     public void cancelCurrentPurchase() {
         // XXX - Cancel current purchase
         log.info("Current purchase canceled");
     }
 
-    public void startNewPurchase() {
-        // XXX - Start new purchase
+    public void startNewPurchase() { // XXX - Start new purchase
         log.info("New purchase started");
     }
-
-
 
     public void setModel(SalesSystemModel model) {
         this.model = model;
     }
-
-
-    public Sale getSale(Long id) {
-        return (Sale) session.get(Sale.class, id);
-    }
-
+    
     @Override
     public void endSession() {
         HibernateUtil.closeSession();

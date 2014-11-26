@@ -38,7 +38,6 @@ public class ClientTab {
 	public void refresh() {
 		model.getClientTableModel().populateWithData(controller.getAllClients());
 		model.getClientTableModel().fireTableDataChanged();
-		System.out.println("Jee");
 	}
 
 	private Component drawClientsTable() {

@@ -62,16 +62,8 @@ public class Sale implements DisplayableItem {
         return soldItems;
     }
 
-    public void setSoldItems(Set<SoldItem> soldItems) {
-        this.soldItems = soldItems;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void addSoldItem(SoldItem item) {

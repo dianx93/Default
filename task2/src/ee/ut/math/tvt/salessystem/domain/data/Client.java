@@ -28,28 +28,11 @@ public class Client implements DisplayableItem {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(Integer discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
     public String getFirstName() {
         return firstName;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
+    
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return firstName;
     }
 }

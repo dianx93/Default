@@ -38,15 +38,9 @@ public class StockTab {
 	public Component draw() {
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-		GridBagConstraints gc = getConstraintsForMenu();
 		panel.setLayout(new GridBagLayout());
-
-		panel.add(drawStockMenuPane(), gc);
-
-		gc.weighty = 1.0;
-		gc.fill = GridBagConstraints.BOTH;
-		panel.add(drawStockMainPane(), gc);
+		panel.add(drawStockMenuPane(), getConstraintsForMenu());
+		panel.add(drawStockMainPane(), getConstraintsForMain());
 		return panel;
 	}
 
@@ -181,7 +175,17 @@ public class StockTab {
 		gc.weighty = 0d;
 		return gc;
 	}
-	
+
+	private GridBagConstraints getConstraintsForMain() {
+		GridBagConstraints gc = new GridBagConstraints();
+		gc.fill = GridBagConstraints.BOTH;
+		gc.anchor = GridBagConstraints.NORTH;
+		gc.gridwidth = GridBagConstraints.REMAINDER;
+		gc.weightx = 1.0d;
+		gc.weighty = 1.0;
+		return gc;
+	}
+
 	private GridBagConstraints getConstraintsForAddButton() {
 		GridBagConstraints gc = new GridBagConstraints();
 		gc.anchor = GridBagConstraints.NORTHWEST;
@@ -189,7 +193,7 @@ public class StockTab {
 		gc.weightx = 1.0;
 		return gc;
 	}
-	
+
 	private GridBagConstraints getConstraintsForScrollPane() {
 		GridBagConstraints gc = new GridBagConstraints();
 		gc.fill = GridBagConstraints.BOTH;

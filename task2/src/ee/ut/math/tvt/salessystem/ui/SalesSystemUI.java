@@ -99,7 +99,7 @@ public class SalesSystemUI extends JFrame {
 			
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				if (tabbedPane.getSelectedIndex() == 1) {
+				if (tabbedPane.getSelectedIndex() > 0) {
 					stockTab.refresh();
 				} else if (tabbedPane.getSelectedIndex() == 2) {
 					historyTab.refresh();

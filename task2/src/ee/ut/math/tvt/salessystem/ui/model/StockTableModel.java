@@ -37,28 +37,6 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
-
-	/**
-	 * Add new stock item to table. If there already is a stock item with
-	 * same id, then existing item's quantity will be increased.
-	 * @param stockItem
-	 */
-	public void addItem(final StockItem stockItem) {
-		try {
-			StockItem item = getItemById(stockItem.getId());
-			item.setQuantity(item.getQuantity() + stockItem.getQuantity());
-			log.debug("Found existing item " + stockItem.getName()
-					+ " increased quantity by " + stockItem.getQuantity());
-		}
-		catch (NoSuchElementException e) {
-			rows.add(stockItem);
-			log.debug("Added " + stockItem.getName()
-					+ " quantity of " + stockItem.getQuantity());
-		}
-		fireTableDataChanged();
-	}
-
-	
 	
 	public boolean hasEnoughInStock(StockItem item, int quantity) {
 	    for(StockItem i : this.rows) {
@@ -78,26 +56,6 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	        }
 	    }
 	    return true;
-	}
-	
-	
-	@Override
-	public String toString() {
-		final StringBuffer buffer = new StringBuffer();
-
-		for (int i = 0; i < headers.length; i++)
-			buffer.append(headers[i] + "\t");
-		buffer.append("\n");
-
-		for (final StockItem stockItem : rows) {
-			buffer.append(stockItem.getId() + "\t");
-			buffer.append(stockItem.getName() + "\t");
-			buffer.append(stockItem.getPrice() + "\t");
-			buffer.append(stockItem.getQuantity() + "\t");
-			buffer.append("\n");
-		}
-
-		return buffer.toString();
 	}
 
 	public List<StockItem> getTableRows() {

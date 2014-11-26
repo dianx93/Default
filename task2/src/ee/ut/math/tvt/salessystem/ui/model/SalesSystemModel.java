@@ -64,11 +64,6 @@ public class SalesSystemModel {
         return clientTableModel;
     }
 
-    public void setPurchaseHistoryTableModel(
-            PurchaseHistoryTableModel purchaseHistoryTableModel) {
-        this.purchaseHistoryTableModel = purchaseHistoryTableModel;
-    }
-
     public Client getSelectedClient() {
         return selectedClient;
     }

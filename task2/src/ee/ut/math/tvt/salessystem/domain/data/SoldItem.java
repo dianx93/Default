@@ -80,5 +80,4 @@ public class SoldItem implements Cloneable, DisplayableItem {
     public void setSale(Sale sale) {
         this.sale = sale;
     }
-
 }

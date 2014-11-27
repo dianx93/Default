@@ -75,12 +75,31 @@ public class StockItem implements Cloneable, DisplayableItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    
+    public String toString() {
+    	return name;
+    }
 
     @Override
     public Object clone() {
         StockItem item = new StockItem(getId(), getName(), getDescription(),
                 getPrice(), getQuantity());
         return item;
+    }
+    
+    public Object getColumn(int columnIndex) {
+    	switch (columnIndex) {
+		case 0:
+			return id;
+		case 1:
+			return name;
+		case 2:
+			return new Double(price);
+		case 3:
+			return new Integer(quantity);
+		default:
+			throw new RuntimeException("invalid column!");
+		}
     }
 
 }

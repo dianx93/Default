@@ -32,7 +32,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		this();
 		this.model = model;
 	}
-
+	
 	@Override
 	protected Object getColumnValue(SoldItem item, int columnIndex) {
 		switch (columnIndex) {

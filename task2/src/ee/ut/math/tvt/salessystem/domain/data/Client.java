@@ -35,4 +35,8 @@ public class Client implements DisplayableItem {
     public Long getId() {
         return id;
     }
+    
+    public String toString() {
+    	return firstName;
+    }
 }
